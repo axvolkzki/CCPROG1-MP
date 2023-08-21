@@ -1,7 +1,7 @@
 # CCPROG1_MP
 A Machine Project as a course requirement for Logic Formulation and Introductory  Programming. 
 
-# Description
+## Description
 This program is called Doggos, Ladders, Slides, and 
 U-turns (DLSU), a modern turn-based offline board game inspired 
 by the traditional Snake and Ladders board game. Like the Snake 
