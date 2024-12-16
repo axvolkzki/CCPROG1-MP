@@ -18,7 +18,30 @@
  * 
  */
 
-int main() {
+#include <stdio.h>
+#include <stdlib.h>
 
+#include "Header/funcHelper.h"
+#include "Header/funcDisplay.h"
+#include "Header/funcGamePlay.h"
+
+int main() {
+    // Variables
+    int nP1Pos = 0, nP2Pos = 0, nP3Pos = 0, nP4Pos = 0, nP5Pos = 0;
+
+
+    system("cls");  // Clear screen
+
+    displayDivider();
+    displayHeader();
+    displayDivider();
+
+    printf("\n\n");
+    displayBoard(nP1Pos, nP2Pos, nP3Pos, nP4Pos, nP5Pos);
+    printf("\n\n");
+
+    displayAllPlayersCurrentPosition(nP1Pos, nP2Pos, nP3Pos, nP4Pos, nP5Pos);
+
+    
     return 0;
 }

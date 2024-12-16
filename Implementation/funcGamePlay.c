@@ -1,18 +1,24 @@
-#include "funcGamePlay.h"       // User-defined Header File
-
+// Preprocessor directives>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <time.h>
 #include <stdbool.h>
 
-/* Function Definitions */
 
-/*	Header
-    This function displays the title of the game
-	everytime a game starts.
+
+/*	
+    <Short description>
+    
+	Precondition:   <none>
+    @param          <void>
+    @return         boolean
 */
-void displayHeader( ) {
-    printf("\n");
-	printf("==============================================================================");
-	printf("\n\t\tWelcome to Doggos, Ladders, Slides and U-turns!\n");
-	printf("==============================================================================\n");
+bool isValidResponse(char x) {
+    if (x == 'Y' || x == 'y' || x == 'N' || x == 'n')
+        return true;
+    else
+        return false;
 }
 
 /*	
@@ -50,16 +56,3 @@ bool wantPlayAgain( ) {
     }
 }
 
-/*	
-    <Short description>
-    
-	Precondition:   <none>
-    @param          <void>
-    @return         boolean
-*/
-bool isValidResponse(char x) {
-    if (x == 'Y' || x == 'y' || x == 'N' || x == 'n')
-        return true;
-    else
-        return false;
-}
