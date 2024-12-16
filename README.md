@@ -1,7 +1,7 @@
 # Doggos, Ladders, Slides, U-turns (DLSU)
-A console-based application titled "Doggos, Ladders, Slides, and U-Turns" (DLSU) is an offline board game inspired by the traditional Snakes and Ladders board game that features a board with a 10 x 10 grid of tiles numbered from 1 to 100 for 2-5 players.
+A turn-based console board game inspired by the classic **Snakes and Ladders**. This offline game features a 10 x 10 grid-based board with tiles numbered 1 to 100, designed for 2 to 5 players. The objective is simple: race from the starting tile (1) to the finish (100), navigating the board while overcoming or benefiting from the game's unique mechanics.
 
-Players participate in a Spartan race with an exciting twist in this board game. Instead of the traditional snakes and ladders, the game features dogs, ladders, slides, and U-turns that can appear randomly on different tiles. These elements can assist or hinder players navigating the board to reach tile 100. The first player to land on this tile is declared the winner.
+Unlike traditional Snakes and Ladders, DLSU introduces an exciting mix of elements—doggos, ladders, slides, and U-turns—that randomly appear throughout the board. These elements can help or hinder players' progress, adding an unpredictable and fun twist to the game. The first player to reach tile 100 wins, but the path to victory is full of surprises!
 
 ## Program Setup
 1. Ensure that you have a C compiler installed on your machine.
