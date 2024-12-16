@@ -1,7 +1,7 @@
 # Doggos, Ladders, Slides, U-turns (DLSU)
-This program is titled "Doggos, Ladders, Slides, and U-Turns" (DLSU). It is a machine project created as a course requirement for Logic Formulation and Introductory Programming (CCPROG1). The game is a modern turn-based offline board game inspired by the traditional Snakes and Ladders board game. Like Snakes and Ladders, it features a board with a 10 x 10 grid of tiles numbered from 1 to 100. 
+This program is titled "Doggos, Ladders, Slides, and U-Turns" (DLSU). It is a machine project created as a course requirement for Logic Formulation and Introductory Programming (CCPROG1). The game is a modern Command-Line Interface (CLI) turn-based offline board game inspired by the traditional Snakes and Ladders board game. Like Snakes and Ladders, it features a board with a 10 x 10 grid of tiles numbered from 1 to 100. 
 
-In this board game, players engage in a simple race with an exciting twist. Instead of just snakes and ladders, there are now doggos, ladders, slides, and u-turns that can randomly appear on various tiles. These elements can assist or hinder the players as they navigate the board to reach their goal of landing on tile 100. The first player to reach this goal is declared the winner.
+Players participate in a Spartan race with an exciting twist in this board game. Instead of the traditional snakes and ladders, the game features dogs, ladders, slides, and U-turns that can appear randomly on different tiles. These elements can assist or hinder players navigating the board to reach tile 100. The first player to land on this tile is declared the winner.
 
 ## Program Setup
 1. Ensure that you have a C compiler installed on your machine.
