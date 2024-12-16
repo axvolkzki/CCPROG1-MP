@@ -5,6 +5,8 @@
 #include <time.h>
 #include <stdbool.h>
 
+#include "../Header/funcHelper.h"
+
 
 
 /*	
@@ -33,16 +35,25 @@ bool wantPlayAgain( ) {
     bool isValidRes = false;
 
     // Ask user to play again
-    printf("\n\nWould you like to play again?");
-    printf("\nEnter: \n\t[Y] - Yes\n\t[N] - No");
-    printf("\nAnswer: \t");
+    printf("\n\n");
+    printf("Would you like to play again?\n");
+    printf("Enter\t: ");
+    blue();
+    printf("[Y]es \t");
+    red();
+    printf("[N]o \n");
+    reset();
+    printf("Answer\t: ");
     scanf(" %c", &cResponse);
 
     isValidRes = isValidResponse(cResponse);
 
     while(!isValidRes) {
-        printf("Status: \t\"Invalid input! Try again!\"\n");
-        printf("\nAnswer: ");
+        red();
+        printf("\nSystem\t: \"Invalid input! Try again!\"\n");
+
+        reset();
+        printf("Answer\t: ");
         scanf(" %c", &cResponse);
 
         isValidRes = isValidResponse(cResponse);

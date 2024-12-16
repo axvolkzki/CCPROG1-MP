@@ -23,25 +23,46 @@
 
 #include "Header/funcHelper.h"
 #include "Header/funcDisplay.h"
+#include "Header/funcInitializeGame.h"
 #include "Header/funcGamePlay.h"
 
 int main() {
     // Variables
+    int nNumPlayers = 0;
     int nP1Pos = 0, nP2Pos = 0, nP3Pos = 0, nP4Pos = 0, nP5Pos = 0;
+    bool playAgain = true;
 
+    do {
+        system("cls");  // Clear screen
 
-    system("cls");  // Clear screen
+        displayDivider();
+        displayHeader();
+        displayDivider();
 
-    displayDivider();
-    displayHeader();
-    displayDivider();
+        printf("\n\n");
+        displayBoard(nP1Pos, nP2Pos, nP3Pos, nP4Pos, nP5Pos);
+        printf("\n\n");
 
-    printf("\n\n");
-    displayBoard(nP1Pos, nP2Pos, nP3Pos, nP4Pos, nP5Pos);
-    printf("\n\n");
+        // Ask user how many players
+        printf("Enter the number of players (1-5): ");
+        scanf("%d", &nNumPlayers);
 
-    displayAllPlayersCurrentPosition(nP1Pos, nP2Pos, nP3Pos, nP4Pos, nP5Pos);
+        // Validate number of players
+        if(isValidPlayers(nNumPlayers)) {
+            // Initialize the game
+            //initializeGame(nNumPlayers, &nP1Pos, &nP2Pos, &nP3Pos, &nP4Pos, &nP5Pos);
 
+            // Start the game
+            //startGame(nNumPlayers, nP1Pos, nP2Pos, nP3Pos, nP4Pos, nP5Pos);
+
+            
+        } else {
+            printf("Invalid number of players! Please try again.\n");
+        }
+
+        // Ask user if they want to play again
+        playAgain = wantPlayAgain();
+    } while (playAgain); 
     
     return 0;
 }
