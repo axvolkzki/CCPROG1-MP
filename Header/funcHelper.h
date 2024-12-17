@@ -10,3 +10,5 @@ void blue();        // Blue color   - Player 4
 void purple();      // Purple color - Player 5
 void cyan();        // Cyan color   - Winner Player
 void reset();       // Reset color
+
+int getDieSequence(int nNumberOfPlayers);  // Sequence of players

@@ -20,18 +20,25 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "Header/funcHelper.h"
 #include "Header/funcDisplay.h"
-#include "Header/funcInitializeGame.h"
+#include "Header/funcInitialize.h"
 #include "Header/funcGamePlay.h"
 
 int main() {
     // Variables
     int nNumPlayers = 0;
     int nP1Pos = 0, nP2Pos = 0, nP3Pos = 0, nP4Pos = 0, nP5Pos = 0;
+    int nPlayerSequence = 0;
     bool playAgain = true;
 
+    // For random number generation
+    time_t t;
+	srand(time(&t));
+
+    // Main loop
     do {
         system("cls");  // Clear screen
 
@@ -50,7 +57,14 @@ int main() {
         // Validate number of players
         if(isValidPlayers(nNumPlayers)) {
             // Initialize the game
-            //initializeGame(nNumPlayers, &nP1Pos, &nP2Pos, &nP3Pos, &nP4Pos, &nP5Pos);
+            initializeGame(nNumPlayers, &nPlayerSequence, &nP1Pos, &nP2Pos, &nP3Pos, &nP4Pos, &nP5Pos);
+
+            // Clear screen
+            system("cls");  
+
+            // Display the initialization status
+            displayInitializeStatus(nNumPlayers, nPlayerSequence, &nP1Pos, &nP2Pos, &nP3Pos, &nP4Pos, &nP5Pos);
+
 
             // Start the game
             //startGame(nNumPlayers, nP1Pos, nP2Pos, nP3Pos, nP4Pos, nP5Pos);

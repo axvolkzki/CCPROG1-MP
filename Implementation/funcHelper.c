@@ -3,15 +3,19 @@
  * @brief This file contains the function definitions for the functions that help in the game's implementation.
  */
 
+// Preprocessor directives
 #include <stdio.h>
+#include <stdlib.h>
 
+
+// Function Definitions
 /**
  * @brief This function changes the text color to red.
  * @param void
  * @return void
  */
 void red() {
-  printf("\033[1;31m");
+    printf("\033[0;31m");
 }
 
 /**
@@ -20,7 +24,7 @@ void red() {
  * @return void
  */
 void yellow() {
-  printf("\033[1;33m");
+    printf("\033[0;33m");
 }
 
 /**
@@ -29,7 +33,7 @@ void yellow() {
  * @return void
  */
 void green() {
-  printf("\033[1;32m");
+    printf("\033[0;32m");
 }
 
 /**
@@ -38,7 +42,7 @@ void green() {
  * @return void
  */
 void blue() {
-  printf("\033[1;34m");
+    printf("\033[0;34m");
 }
 
 /**
@@ -47,9 +51,8 @@ void blue() {
  * @return void
  */
 void purple() {
-  printf("\033[1;35m");
+    printf("\033[0;35m");
 }
-
 
 /**
  * @brief This function changes the text color to cyan.
@@ -57,15 +60,23 @@ void purple() {
  * @return void
  */
 void cyan() {
-  printf("\033[1;36m");
+    printf("\033[0;36m");
 }
 
-
 /**
- * @brief This function resets the text color to default.
+ * @brief This function resets the text color.
  * @param void
  * @return void
  */
 void reset() {
-  printf("\033[0m");
+    printf("\033[0m");
+}
+
+/**
+ * @brief This function gets the sequence of players.
+ * @param nNumberOfPlayers is the number of players.
+ * @return int is the sequence of players.
+ */
+int getDieSequence(int nNumberOfPlayers) {
+    return (int)rand() % nNumberOfPlayers + 1;
 }
