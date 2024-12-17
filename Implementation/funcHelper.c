@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define D10 10
+
 
 // Function Definitions
 /**
@@ -79,4 +81,58 @@ void reset() {
  */
 int getDieSequence(int nNumberOfPlayers) {
     return (int)rand() % nNumberOfPlayers + 1;
+}
+
+/**
+ * @brief This function generates a random digit from a 10-sided die.
+ * @param void
+ * @return int is the generated random digit.
+ */
+int getDieMovement() {
+    return (int)rand() % D10 + 1;
+}
+
+/**
+ * @brief This function gets the updated player sequence.
+ * @param nSequence is the sequence of players.
+ * @return int is the new sequence of players.
+ */
+int getUpdatedPlayerSequence(int nSequence) {
+    int nValue = 0, count = 0;
+    int i, j;
+    int nPowerOfTen = 1;
+    int nFirstDigit, nRemovedFirstDigit, nNewSeq;
+
+    nValue = nSequence;
+
+    for (i = 1; nSequence > 5; i++) {
+        nSequence /= 10;
+        nFirstDigit = nSequence;
+        count++;
+    }
+
+    for (j = 1; j <= count; j++) {
+        nPowerOfTen *= 10;
+    }
+
+    nRemovedFirstDigit = nValue - (nFirstDigit * nPowerOfTen);
+    nNewSeq = (10 * nRemovedFirstDigit) + nFirstDigit;
+
+    return nNewSeq;
+}
+
+/**
+ * @brief This function gets the current player.
+ * @param nSequence is the sequence of players.
+ * @return int is the current player.
+ */
+int getCurrentPlayer(int nSequence) {
+    int nFirstNum;
+
+    while (nSequence > 5) {
+        nSequence /= 10;
+        nFirstNum = nSequence;
+    }
+
+    return nFirstNum;
 }

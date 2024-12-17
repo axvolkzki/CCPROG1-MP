@@ -18,3 +18,5 @@ void displayAllPlayersCurrentPosition(int nNumPlayers, int nP1Pos, int nP2Pos, i
 
 
 void displayInitializeStatus(int nNumPlayers, int nSequence, int* nP1Pos, int* nP2Pos, int* nP3Pos, int* nP4Pos, int* nP5Pos);  // Game's initialization status
+
+void displayCurrentPlayer(int nCurrentPlayer);  // Current player

@@ -40,6 +40,7 @@ int main() {
 
     // Main loop
     do {
+        resetGame(nNumPlayers, &nPlayerSequence, &nP1Pos, &nP2Pos, &nP3Pos, &nP4Pos, &nP5Pos);
         system("cls");  // Clear screen
 
         displayDivider();
@@ -65,11 +66,8 @@ int main() {
             // Display the initialization status
             displayInitializeStatus(nNumPlayers, nPlayerSequence, &nP1Pos, &nP2Pos, &nP3Pos, &nP4Pos, &nP5Pos);
 
-
             // Start the game
-            //startGame(nNumPlayers, nP1Pos, nP2Pos, nP3Pos, nP4Pos, nP5Pos);
-
-            
+            startGame(nNumPlayers, &nPlayerSequence, &nP1Pos, &nP2Pos, &nP3Pos, &nP4Pos, &nP5Pos);
         } else {
             printf("Invalid number of players! Please try again.\n");
         }
@@ -77,6 +75,8 @@ int main() {
         // Ask user if they want to play again
         playAgain = wantPlayAgain();
     } while (playAgain); 
+
+
     
     return 0;
 }

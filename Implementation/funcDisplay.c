@@ -170,6 +170,7 @@ void displayP5Position(int nP5Pos) {
  * @return void
  */
 void displayAllPlayersCurrentPosition(int nNumPlayers, int nP1Pos, int nP2Pos, int nP3Pos, int nP4Pos, int nP5Pos) {
+    reset();
     printf("Current Position of All Players\t: ");
 
     switch (nNumPlayers) {
@@ -233,6 +234,7 @@ void displaySequenceOfPlayers(int nSequence) {
     int nFourthNum = 0;
     int nFifthNum = 0;
 
+    reset();
     printf("Sequence of Players\t\t: ");
     
     if (nSequence > 10000) {
@@ -246,34 +248,26 @@ void displaySequenceOfPlayers(int nSequence) {
         nSequence %= 10;
         nFifthNum = nSequence;
 
-        red();
+        cyan();
         printf("P%d", nFirstNum);
 
         reset();
         printf(" -> ");
 
-        yellow();
         printf("P%d", nSecondNum);
 
-        reset();
         printf(" -> ");
 
-        green();
         printf("P%d", nThirdNum);
 
-        reset();
         printf(" -> ");
 
-        blue();
         printf("P%d", nFourthNum);
 
-        reset();
         printf(" -> ");
 
-        purple();
         printf("P%d", nFifthNum);
 
-        reset();
     } else if (nSequence > 1000) {
         nFirstNum = nSequence / 1000;
         nSequence %= 1000;
@@ -283,28 +277,22 @@ void displaySequenceOfPlayers(int nSequence) {
         nSequence %= 10;
         nFourthNum = nSequence;
 
-        red();
+        cyan();
         printf("P%d", nFirstNum);
 
         reset();
         printf(" -> ");
 
-        yellow();
         printf("P%d", nSecondNum);
 
-        reset();
         printf(" -> ");
 
-        green();
         printf("P%d", nThirdNum);
 
-        reset();
         printf(" -> ");
 
-        blue();
         printf("P%d", nFourthNum);
 
-        reset();
     } else if (nSequence > 100) {
         nFirstNum = nSequence / 100;
         nSequence %= 100;
@@ -312,31 +300,27 @@ void displaySequenceOfPlayers(int nSequence) {
         nSequence %= 10;
         nThirdNum = nSequence;
 
-        red();
+        cyan();
         printf("P%d", nFirstNum);
 
         reset();
         printf(" -> ");
 
-        yellow();
         printf("P%d", nSecondNum);
 
-        reset();
         printf(" -> ");
 
-        green();
         printf("P%d", nThirdNum);
 
-        reset();
     } else if (nSequence > 10) {
         nFirstNum = nSequence / 10;
         nSequence %= 10;
         nSecondNum = nSequence;
 
-        red();
+        cyan();
         printf("P%d", nFirstNum);
 
-        yellow();
+        reset();
         printf(" -> P%d", nSecondNum);
     }
 
@@ -366,4 +350,15 @@ void displayInitializeStatus(int nNumPlayers, int nSequence, int* nP1Pos, int* n
  
     displaySequenceOfPlayers(nSequence);
     printf("\n\n");
+}
+
+/**
+ * @brief This function displays the current player.
+ * @param nCurrentPlayer is the current player.
+ * @return void
+ */
+void displayCurrentPlayer(int nCurrentPlayer) {
+    cyan();
+    printf("Current Turn\t\t\t: P%d\n", nCurrentPlayer);
+    reset();
 }
