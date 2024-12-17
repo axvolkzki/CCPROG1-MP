@@ -335,6 +335,9 @@ void displaySequenceOfPlayers(int nSequence) {
 
         red();
         printf("P%d", nFirstNum);
+
+        yellow();
+        printf(" -> P%d", nSecondNum);
     }
 
     reset();

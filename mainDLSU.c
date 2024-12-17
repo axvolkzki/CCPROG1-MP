@@ -51,7 +51,7 @@ int main() {
         printf("\n\n");
 
         // Ask user how many players
-        printf("Enter the number of players (1-5): ");
+        printf("Enter the number of players (2-5): ");
         scanf("%d", &nNumPlayers);
 
         // Validate number of players

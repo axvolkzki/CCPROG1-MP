@@ -34,11 +34,7 @@ int getSequenceOfPlayers(int nNumPlayers) {
     nSeqTurn5 = getDieSequence(nNumPlayers);
 
 		
-    if(nNumPlayers == 1)
-    {
-    	return nSeqTurn1;
-    }
-    else if(nNumPlayers == 2)
+    if(nNumPlayers == 2)
     {
     	if(nSeqTurn2 != nSeqTurn1)
         {
