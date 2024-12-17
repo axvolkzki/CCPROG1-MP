@@ -44,7 +44,7 @@ int main() {
         system("cls");  // Clear screen
 
         displayDivider();
-        displayHeader();
+        displayGameTitle();
         displayDivider();
 
         printf("\n\n");
@@ -76,6 +76,8 @@ int main() {
         playAgain = wantPlayAgain();
     } while (playAgain); 
 
+    system("cls");  // Clear screen
+    displayEndGame();  // Display end of game
 
     
     return 0;

@@ -99,7 +99,7 @@ void startGame(int nNumPlayers, int* nPlayerSequence, int* nP1Pos, int* nP2Pos, 
         system("cls");
         nRound++;
         displayDivider();
-        displayHeader();
+        displayGameTitle();
         displayDivider();
         printf("\n");
 

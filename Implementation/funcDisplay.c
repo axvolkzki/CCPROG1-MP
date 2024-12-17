@@ -30,9 +30,32 @@ void displayDivider() {
  * @param void
  * @return void
  */
-void displayHeader() {
-    // 47 characters
-	printf("%63s\n", "Welcome to Doggos, Ladders, Slides and U-turns!");
+void displayGameTitle() {
+    // 43 characters
+    cyan();
+	printf("%61s\n", "Doggos, Ladders, Slides and U-turns (DLSU)!");
+    reset();
+}
+
+/**
+ * @brief This function displays the end of the game.
+ * @param void
+ * @return void
+ */
+void displayEndGame() {
+    displayDivider();
+    displayGameTitle();
+    displayDivider();
+    printf("\n\n");
+
+    cyan();
+    printf("%69s", "Thank you for playing Doggos, Ladders, Slides, and U-Turns!");
+    printf("\n");
+    printf("%47s", "SEE YOU AGAIN!");
+    reset();
+
+    printf("\n\n");
+    displayDivider();
 }
 
 /**
@@ -336,7 +359,7 @@ void displaySequenceOfPlayers(int nSequence) {
  */
 void displayInitializeStatus(int nNumPlayers, int nSequence, int* nP1Pos, int* nP2Pos, int* nP3Pos, int* nP4Pos, int* nP5Pos) {
     displayDivider();
-    displayHeader();
+    displayGameTitle();
     displayDivider();
 
     printf("\n");
