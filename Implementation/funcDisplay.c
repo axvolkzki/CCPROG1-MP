@@ -250,7 +250,7 @@ void displayAllPlayersCurrentPosition(int nNumPlayers, int nP1Pos, int nP2Pos, i
  * @param nSequence is the sequence of players.
  * @return void
  */
-void displaySequenceOfPlayers(int nSequence) {
+void displaySequenceOfPlayers(int nSequence, int nCurrentPlayer) {
     int nFirstNum = 0;
     int nSecondNum = 0;
     int nThirdNum = 0;
@@ -270,26 +270,58 @@ void displaySequenceOfPlayers(int nSequence) {
         nFourthNum = nSequence / 10;
         nSequence %= 10;
         nFifthNum = nSequence;
-
-        cyan();
-        printf("P%d", nFirstNum);
+        
+        if (nCurrentPlayer == nFirstNum) {
+            cyan();
+            printf("P%d", nFirstNum);
+        } else {
+            reset();
+            printf("P%d", nFirstNum);
+        }
 
         reset();
         printf(" -> ");
 
-        printf("P%d", nSecondNum);
+        if (nCurrentPlayer == nSecondNum) {
+            cyan();
+            printf("P%d", nSecondNum);
+        } else {
+            reset();
+            printf("P%d", nSecondNum);
+        }
 
+        reset();
         printf(" -> ");
 
-        printf("P%d", nThirdNum);
+        if (nCurrentPlayer == nThirdNum) {
+            cyan();
+            printf("P%d", nThirdNum);
+        } else {
+            reset();
+            printf("P%d", nThirdNum);
+        }
 
+        reset();
         printf(" -> ");
 
-        printf("P%d", nFourthNum);
+        if (nCurrentPlayer == nFourthNum) {
+            cyan();
+            printf("P%d", nFourthNum);
+        } else {
+            reset();
+            printf("P%d", nFourthNum);
+        }
 
+        reset();
         printf(" -> ");
 
-        printf("P%d", nFifthNum);
+        if (nCurrentPlayer == nFifthNum) {
+            cyan();
+            printf("P%d", nFifthNum);
+        } else {
+            reset();
+            printf("P%d", nFifthNum);
+        }
 
     } else if (nSequence > 1000) {
         nFirstNum = nSequence / 1000;
@@ -300,21 +332,46 @@ void displaySequenceOfPlayers(int nSequence) {
         nSequence %= 10;
         nFourthNum = nSequence;
 
-        cyan();
-        printf("P%d", nFirstNum);
+        if (nCurrentPlayer == nFirstNum) {
+            cyan();
+            printf("P%d", nFirstNum);
+        } else {
+            reset();
+            printf("P%d", nFirstNum);
+        }
 
         reset();
         printf(" -> ");
 
-        printf("P%d", nSecondNum);
+        if (nCurrentPlayer == nSecondNum) {
+            cyan();
+            printf("P%d", nSecondNum);
+        } else {
+            reset();
+            printf("P%d", nSecondNum);
+        }
 
+        reset();
         printf(" -> ");
 
-        printf("P%d", nThirdNum);
+        if (nCurrentPlayer == nThirdNum) {
+            cyan();
+            printf("P%d", nThirdNum);
+        } else {
+            reset();
+            printf("P%d", nThirdNum);
+        }
 
+        reset();
         printf(" -> ");
 
-        printf("P%d", nFourthNum);
+        if (nCurrentPlayer == nFourthNum) {
+            cyan();
+            printf("P%d", nFourthNum);
+        } else {
+            reset();
+            printf("P%d", nFourthNum);
+        }
 
     } else if (nSequence > 100) {
         nFirstNum = nSequence / 100;
@@ -323,28 +380,59 @@ void displaySequenceOfPlayers(int nSequence) {
         nSequence %= 10;
         nThirdNum = nSequence;
 
-        cyan();
-        printf("P%d", nFirstNum);
+        if (nCurrentPlayer == nFirstNum) {
+            cyan();
+            printf("P%d", nFirstNum);
+        } else {
+            reset();
+            printf("P%d", nFirstNum);
+        }
 
         reset();
         printf(" -> ");
 
-        printf("P%d", nSecondNum);
+        if (nCurrentPlayer == nSecondNum) {
+            cyan();
+            printf("P%d", nSecondNum);
+        } else {
+            reset();
+            printf("P%d", nSecondNum);
+        }
 
+        reset();
         printf(" -> ");
 
-        printf("P%d", nThirdNum);
+        if (nCurrentPlayer == nThirdNum) {
+            cyan();
+            printf("P%d", nThirdNum);
+        } else {
+            reset();
+            printf("P%d", nThirdNum);
+        }
 
     } else if (nSequence > 10) {
         nFirstNum = nSequence / 10;
         nSequence %= 10;
         nSecondNum = nSequence;
 
-        cyan();
-        printf("P%d", nFirstNum);
+        if (nCurrentPlayer == nFirstNum) {
+            cyan();
+            printf("P%d", nFirstNum);
+        } else {
+            reset();
+            printf("P%d", nFirstNum);
+        }
 
         reset();
-        printf(" -> P%d", nSecondNum);
+        printf(" -> ");
+
+        if (nCurrentPlayer == nSecondNum) {
+            cyan();
+            printf("P%d", nSecondNum);
+        } else {
+            reset();
+            printf("P%d", nSecondNum);
+        }
     }
 
     reset();
@@ -371,7 +459,7 @@ void displayInitializeStatus(int nNumPlayers, int nSequence, int* nP1Pos, int* n
     printf("\n\n");
     displayAllPlayersCurrentPosition(nNumPlayers, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
  
-    displaySequenceOfPlayers(nSequence);
+    displaySequenceOfPlayers(nSequence, 0);
     printf("\n\n");
 }
 

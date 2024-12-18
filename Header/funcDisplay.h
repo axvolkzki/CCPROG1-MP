@@ -8,7 +8,7 @@ void displayGameTitle();    // Game's title
 void displayEndGame();      // End of the game
 
 void displayBoard(int nP1Pos, int nP2Pos, int nP3Pos, int nP4Pos, int nP5Pos);  // Game's board
-void displaySequenceOfPlayers(int nSequence);  // Sequence of players
+void displaySequenceOfPlayers(int nSequence, int nCurrentPlayer);  // Sequence of players
 
 void displayP1Position(int nP1Pos);  // Player 1's position
 void displayP2Position(int nP2Pos);  // Player 2's position

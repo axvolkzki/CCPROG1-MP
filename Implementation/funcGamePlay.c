@@ -69,6 +69,120 @@ bool wantPlayAgain() {
     }
 }
 
+/**
+ * @brief This function handles the gameplay for two players.
+ * @param nNumPlayers is the number of players.
+ * @param nPlayerSequence is the sequence of players.
+ * @param nP1Pos is the position of Player 1.
+ * @param nP2Pos is the position of Player 2.
+ * @return void
+ */
+void twoPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, int* nP1Pos, int* nP2Pos) {
+    // Variables
+    int nP1Doggos = 0, nP2Doggos = 0;
+    int nP1Ladders = 0, nP2Ladders = 0;
+    int nP1Slides = 0, nP2Slides = 0;
+    int nP1UTurns = 0, nP2UTurns = 0;
+    int nP1ObjectNavFarthest = 0, nP2ObjectNavFarthest = 0;
+    int nWinningMove = 0;
+
+    int nTurns = 0;
+    int nCurrentPlayer = 0;
+    int nNewSequence = *nPlayerSequence;
+
+    // Start the game
+    do {
+        nCurrentPlayer = getCurrentPlayer(nNewSequence);
+        displaySequenceOfPlayers(*nPlayerSequence, nCurrentPlayer);
+        displayAllPlayersCurrentPosition(nNumPlayers, *nP1Pos, *nP2Pos, 0, 0, 0);
+        displayCurrentPlayer(nCurrentPlayer);
+
+        char cResponse = ' ';
+        printf("Answer\t: ");
+        scanf(" %c", &cResponse);
+
+        switch (nCurrentPlayer) {
+            case 1:
+                //nP1Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, 0, 0, 0);
+                *nPosition = *nPosition + 1;
+                break;
+            case 2:
+                //nP2Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, 0, 0, 0);
+                *nPosition = *nPosition + 1;
+                break;
+        }
+
+        nTurns++;
+        nNewSequence = getUpdatedPlayerSequence(nNewSequence);
+    } while (*nPosition != 5 && nTurns != nNumPlayers);
+
+    nTurns = 0;
+}
+
+
+/**
+ * @brief This function handles the gameplay for five players.
+ * @param nNumPlayers is the number of players.
+ * @param nPlayerSequence is the sequence of players.
+ * @param nP1Pos is the position of Player 1.
+ * @param nP2Pos is the position of Player 2.
+ * @param nP3Pos is the position of Player 3.
+ * @param nP4Pos is the position of Player 4.
+ * @param nP5Pos is the position of Player 5.
+ */
+void fivePlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, int* nP1Pos, int* nP2Pos, int* nP3Pos, int* nP4Pos, int* nP5Pos) {
+    // Variables
+    int nP1Doggos = 0, nP2Doggos = 0, nP3Doggos = 0, nP4Doggos = 0, nP5Doggos = 0;
+    int nP1Ladders = 0, nP2Ladders = 0, nP3Ladders = 0, nP4Ladders = 0, nP5Ladders = 0;
+    int nP1Slides = 0, nP2Slides = 0, nP3Slides = 0, nP4Slides = 0, nP5Slides = 0;
+    int nP1UTurns = 0, nP2UTurns = 0, nP3UTurns = 0, nP4UTurns = 0, nP5UTurns = 0;
+    int nP1ObjectNavFarthest = 0, nP2ObjectNavFarthest = 0, nP3ObjectNavFarthest = 0, nP4ObjectNavFarthest = 0, nP5ObjectNavFarthest = 0;
+    int nWinningMove = 0;
+
+    int nTurns = 0;
+    int nCurrentPlayer = 0;
+    int nNewSequence = *nPlayerSequence;
+
+    // Start the game
+    do {
+        nCurrentPlayer = getCurrentPlayer(nNewSequence);
+        displaySequenceOfPlayers(*nPlayerSequence, nCurrentPlayer);
+        displayAllPlayersCurrentPosition(nNumPlayers, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
+        displayCurrentPlayer(nCurrentPlayer);
+
+        char cResponse = ' ';
+        printf("Answer\t: ");
+        scanf(" %c", &cResponse);
+
+        switch (nCurrentPlayer) {
+            case 1:
+                //nP1Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
+                *nPosition = *nPosition + 1;
+                break;
+            case 2:
+                //nP2Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
+                *nPosition = *nPosition + 1;
+                break;
+            case 3:
+                //nP3Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
+                *nPosition = *nPosition + 1;
+                break;
+            case 4:
+                //nP4Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
+                *nPosition = *nPosition + 1;
+                break;
+            case 5:
+                //nP5Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
+                *nPosition = *nPosition + 1;
+                break;
+        }
+        nTurns++;
+        nNewSequence = getUpdatedPlayerSequence(nNewSequence);
+    } while (*nPosition != 5 && nTurns != nNumPlayers);
+
+    nTurns = 0;
+}
+
 
 
 /**
@@ -84,14 +198,7 @@ bool wantPlayAgain() {
  */
 void startGame(int nNumPlayers, int* nPlayerSequence, int* nP1Pos, int* nP2Pos, int* nP3Pos, int* nP4Pos, int* nP5Pos) {
     // Variables
-    int nP1Doggos = 0, nP2Doggos = 0, nP3Doggos = 0, nP4Doggos = 0, nP5Doggos = 0;
-    int nP1Ladders = 0, nP2Ladders = 0, nP3Ladders = 0, nP4Ladders = 0, nP5Ladders = 0;
-    int nP1Slides = 0, nP2Slides = 0, nP3Slides = 0, nP4Slides = 0, nP5Slides = 0;
-    int nP1UTurns = 0, nP2UTurns = 0, nP3UTurns = 0, nP4UTurns = 0, nP5UTurns = 0;
-    int nP1ObjectNavFarthest = 0, nP2ObjectNavFarthest = 0, nP3ObjectNavFarthest = 0, nP4ObjectNavFarthest = 0, nP5ObjectNavFarthest = 0;
-    int nWinningMove = 0;
-
-    int nRound = 0, nTurns = 0, nPosition = 0;
+    int nRound = 0, nPosition = 0;
     int nCurrentPlayer = 0, nNewSequence = 0;
 
     // Start the game
@@ -114,24 +221,15 @@ void startGame(int nNumPlayers, int* nPlayerSequence, int* nP1Pos, int* nP2Pos, 
 
         switch (nNumPlayers) {
             case 2:
-                displayAllPlayersCurrentPosition(nNumPlayers, *nP1Pos, *nP2Pos, 0, 0, 0);
-                displaySequenceOfPlayers(*nPlayerSequence);
-
-                nCurrentPlayer = getCurrentPlayer(*nPlayerSequence);
-                displayCurrentPlayer(nCurrentPlayer);
-
-                char cResponse = ' ';
-                printf("Answer\t: ");
-                scanf(" %c", &cResponse);
-                nPosition++;
-                *nP1Pos = 5 +  *nP1Pos;
-                *nP2Pos = 10 + *nP2Pos;
+                twoPlayersGamePlay(&nPosition, nNumPlayers, nPlayerSequence, nP1Pos, nP2Pos);
                     
 
-                *nPlayerSequence = getUpdatedPlayerSequence(*nPlayerSequence);
 
 
 
+                break;
+            case 5:
+                fivePlayersGamePlay(&nPosition, nNumPlayers, nPlayerSequence, nP1Pos, nP2Pos, nP3Pos, nP4Pos, nP5Pos);
                 break;
         }
 
