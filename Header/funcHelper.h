@@ -12,3 +12,9 @@ void cyan();        // Cyan color   - Winner Player
 void reset();       // Reset color
 
 int getDieSequence(int nNumberOfPlayers);  // Sequence of players
+
+int getDieMovement();  // Die generator for movement of players in the board
+
+int getUpdatedPlayerSequence(int nSequence);  // New Turn of Player
+
+int getCurrentPlayer(int nSequence);  // Current player
