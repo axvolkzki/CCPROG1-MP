@@ -91,6 +91,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
     int nObjectNavFarthest = *currPlayerObjectNavFarthest;
     int cResponse = ' ';
     int nPosition = *currPlayerPos;
+    int tempTile = 0;
 
     //printf("Debugger: nPosition = %d\n", nPosition);
 
@@ -113,13 +114,12 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
 
         // Check if there is an object in the tile
         //nDiceObject = getDieMovement();
-        nDiceObject = 1;
+        nDiceObject = 2;
 
         switch (nDiceObject) {
             case 1:
                 nRow = getDieMovement();
                 nColumn = getDieMovement();
-                int tempTile = 0;
 
                 if (nRow % 2 == 0) {
                     tempTile = ((nRow * 10) - (nColumn - 1));
@@ -148,6 +148,11 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                     nTile = tempTile;
                     nDoggos++;
                 }
+                break;
+            case 2:
+                // No Ladders allowed on tiles 90 to 99
+                nDiceObject = getDieMovement();
+                break;
         }
 
     } else if (nPosition >= 0 && nPosition <= 89) {
@@ -168,13 +173,13 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
         
         // Check if there is an object in the tile
         //nDiceObject = getDieMovement();
-        nDiceObject = 1;
+        nDiceObject = 2;
 
         switch (nDiceObject) {
             case 1:
                 nRow = getDieMovement();
                 nColumn = getDieMovement();
-                int tempTile = 0;
+                
 
                 if (nRow % 2 == 0) {
                     tempTile = ((nRow * 10) - (nColumn - 1));
@@ -203,6 +208,42 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                     nTile = tempTile;
                     nDoggos++;
                 }
+                break;
+            case 2:
+                nRow = getDieMovement();
+                nColumn = getDieMovement();
+
+                if (nRow % 2 == 0) {
+                    tempTile = ((nRow * 10) - (nColumn - 1));
+                } else {
+                    tempTile = (((nRow - 1) * 10) + nColumn);
+                }
+
+                while (nTile >= tempTile) {
+                    nRow = getDieMovement();
+                    nColumn = getDieMovement();
+
+                    if (nRow % 2 == 0) {
+                        tempTile = ((nRow * 10) - (nColumn - 1));
+                    } else {
+                        tempTile = (((nRow - 1) * 10) + nColumn);
+                    }
+                }
+
+                if (nTile < tempTile) {
+                    cyan();
+                    printf("\n[System] ");
+                    reset();
+                    printf("A ladder is on tile %d. Yay! Please climb the ladder to tile %d (row: %d, col: %d).\n", nTile, tempTile, nRow, nColumn);
+                    
+                    nTile = tempTile;
+                    nLadders++;
+
+                    if (nTile > nObjectNavFarthest) {
+                        nObjectNavFarthest = nTile;
+                    }
+                }
+
                 break;
         }
     }
