@@ -114,18 +114,35 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
 
         // Check if there is an object in the tile
         //nDiceObject = getDieMovement();
-        nDiceObject = 2;
+        nDiceObject = 3;
+
+        // Restrict ladders on tiles 90 to 99
+        if (nTile >= 90 && nTile <= 99 && nDiceObject == 2) {
+            while (nDiceObject == 2) {
+                nDiceObject = getDieMovement();
+            }
+        }
+
+        // Get movement of the player based on the object
+        nRow = getDieMovement();
+        nColumn = getDieMovement();
+
+        if (nRow % 2 == 0) {
+            tempTile = ((nRow * 10) - (nColumn - 1));
+        } else {
+            tempTile = (((nRow - 1) * 10) + nColumn);
+        }
 
         switch (nDiceObject) {
-            case 1:
-                nRow = getDieMovement();
-                nColumn = getDieMovement();
+            case 1: // Doggo
+                // nRow = getDieMovement();
+                // nColumn = getDieMovement();
 
-                if (nRow % 2 == 0) {
-                    tempTile = ((nRow * 10) - (nColumn - 1));
-                } else {
-                    tempTile = (((nRow - 1) * 10) + nColumn);
-                }
+                // if (nRow % 2 == 0) {
+                //     tempTile = ((nRow * 10) - (nColumn - 1));
+                // } else {
+                //     tempTile = (((nRow - 1) * 10) + nColumn);
+                // }
 
                 if (nTile < tempTile) {
                     cyan();
@@ -149,10 +166,43 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                     nDoggos++;
                 }
                 break;
-            case 2:
+            case 2: // Ladder
                 // No Ladders allowed on tiles 90 to 99
-                nDiceObject = getDieMovement();
+                //nDiceObject = getDieMovement();
                 break;
+            case 3: // Slide
+                // nRow = getDieMovement();
+                // nColumn = getDieMovement();
+
+                // if (nRow % 2 == 0) {
+                //     tempTile = ((nRow * 10) - (nColumn - 1));
+                // } else {
+                //     tempTile = (((nRow - 1) * 10) + nColumn);
+                // }
+
+                // Ensure that the destination tile is less than the current tile
+                while (nTile <= tempTile) {
+                    nRow = getDieMovement();
+                    nColumn = getDieMovement();
+
+                    if (nRow % 2 == 0) {
+                        tempTile = ((nRow * 10) - (nColumn - 1));
+                    } else {
+                        tempTile = (((nRow - 1) * 10) + nColumn);
+                    }
+                }
+
+                if (nTile > tempTile) {
+                    cyan();
+                    printf("\n[System] ");
+                    reset();
+                    printf("A slide is on tile %d. Nay! Please slide down to tile %d (row: %d, col: %d).\n", nTile, tempTile, nRow, nColumn);
+                    
+                    nTile = tempTile;
+                    nSlides++;
+                }
+                break;
+                
         }
 
     } else if (nPosition >= 0 && nPosition <= 89) {
@@ -173,19 +223,36 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
         
         // Check if there is an object in the tile
         //nDiceObject = getDieMovement();
-        nDiceObject = 2;
+        nDiceObject = 3;
+
+        // Restrict slides on tiles 1 to 10
+        if (nTile >= 1 && nTile <= 10 && nDiceObject == 3) {
+            while (nDiceObject == 3) {
+                nDiceObject = getDieMovement();
+            }
+        }
+
+        // Get movement of the player based on the object
+        nRow = getDieMovement();
+        nColumn = getDieMovement();
+
+        if (nRow % 2 == 0) {
+            tempTile = ((nRow * 10) - (nColumn - 1));
+        } else {
+            tempTile = (((nRow - 1) * 10) + nColumn);
+        }
 
         switch (nDiceObject) {
-            case 1:
-                nRow = getDieMovement();
-                nColumn = getDieMovement();
+            case 1: // Doggo
+                // nRow = getDieMovement();
+                // nColumn = getDieMovement();
                 
 
-                if (nRow % 2 == 0) {
-                    tempTile = ((nRow * 10) - (nColumn - 1));
-                } else {
-                    tempTile = (((nRow - 1) * 10) + nColumn);
-                }
+                // if (nRow % 2 == 0) {
+                //     tempTile = ((nRow * 10) - (nColumn - 1));
+                // } else {
+                //     tempTile = (((nRow - 1) * 10) + nColumn);
+                // }
 
                 if (nTile < tempTile) {
                     cyan();
@@ -209,16 +276,17 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                     nDoggos++;
                 }
                 break;
-            case 2:
-                nRow = getDieMovement();
-                nColumn = getDieMovement();
+            case 2: // Ladder
+                // nRow = getDieMovement();
+                // nColumn = getDieMovement();
 
-                if (nRow % 2 == 0) {
-                    tempTile = ((nRow * 10) - (nColumn - 1));
-                } else {
-                    tempTile = (((nRow - 1) * 10) + nColumn);
-                }
+                // if (nRow % 2 == 0) {
+                //     tempTile = ((nRow * 10) - (nColumn - 1));
+                // } else {
+                //     tempTile = (((nRow - 1) * 10) + nColumn);
+                // }
 
+                // Ensure that the destination tile is greater than the current tile
                 while (nTile >= tempTile) {
                     nRow = getDieMovement();
                     nColumn = getDieMovement();
@@ -243,7 +311,38 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                         nObjectNavFarthest = nTile;
                     }
                 }
+                break;
+            case 3: // Slide
+                // nRow = getDieMovement();
+                // nColumn = getDieMovement();
 
+                // if (nRow % 2 == 0) {
+                //     tempTile = ((nRow * 10) - (nColumn - 1));
+                // } else {
+                //     tempTile = (((nRow - 1) * 10) + nColumn);
+                // }
+
+                // Ensure that the destination tile is greater than the current tile
+                while (nTile <= tempTile) {
+                    nRow = getDieMovement();
+                    nColumn = getDieMovement();
+
+                    if (nRow % 2 == 0) {
+                        tempTile = ((nRow * 10) - (nColumn - 1));
+                    } else {
+                        tempTile = (((nRow - 1) * 10) + nColumn);
+                    }
+                }
+
+                if (nTile > tempTile) {
+                    cyan();
+                    printf("\n[System] ");
+                    reset();
+                    printf("A slide is on tile %d. Nay! Please slide down to tile %d (row: %d, col: %d).\n", nTile, tempTile, nRow, nColumn);
+                    
+                    nTile = tempTile;
+                    nSlides++;
+                }
                 break;
         }
     }
@@ -368,7 +467,7 @@ void twoPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, i
     // End of the round
     printf("\n\n");
     cyan();
-    printf("Press any key to continue...");
+    printf("[System] Press any key to continue...");
     reset();
     getchar(); // Consume newline from previous input
     getchar(); // Wait for Enter key press
