@@ -139,8 +139,14 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                     if (nTile > nObjectNavFarthest) {
                         nObjectNavFarthest = nTile;
                     }
-
-
+                } else {
+                    cyan();
+                    printf("\n[System] ");
+                    reset();
+                    printf("A doggo is on tile %d. Nay! Please follow the doggo to tile %d (row: %d, col: %d).\n", nTile, tempTile, nRow, nColumn);
+                    
+                    nTile = tempTile;
+                    nDoggos++;
                 }
         }
 
@@ -188,9 +194,16 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                     if (nTile > nObjectNavFarthest) {
                         nObjectNavFarthest = nTile;
                     }
-
-
+                } else {
+                    cyan();
+                    printf("\n[System] ");
+                    reset();
+                    printf("A doggo is on tile %d. Nay! Please follow the doggo to tile %d (row: %d, col: %d).\n", nTile, tempTile, nRow, nColumn);
+                    
+                    nTile = tempTile;
+                    nDoggos++;
                 }
+                break;
         }
     }
 
@@ -348,38 +361,27 @@ void fivePlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, 
     // Start the game
     do {
         nCurrentPlayer = getCurrentPlayer(nNewSequence);
-        
-        printf("\n");
-        displaySequenceOfPlayers(*nPlayerSequence, nCurrentPlayer);
-        displayAllPlayersCurrentPosition(nNumPlayers, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
+        printf("\n\n");
         displayCurrentPlayer(nCurrentPlayer);
-
-        
-        printf("Answer\t: ");
-        scanf(" %c", &cResponse);
 
         switch (nCurrentPlayer) {
             case 1:
-                //nP1Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
-                *nPosition = *nPosition + 1;
+                *nPosition = getGameplay(nCurrentPlayer, nP1Pos, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
                 break;
             case 2:
-                //nP2Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
-                *nPosition = *nPosition + 1;
+                *nPosition = getGameplay(nCurrentPlayer, nP2Pos, &nP2Doggos, &nP2Ladders, &nP2Slides, &nP2UTurns, &nP2ObjectNavFarthest, &nWinningMove);
                 break;
             case 3:
-                //nP3Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
-                *nPosition = *nPosition + 1;
+                *nPosition = getGameplay(nCurrentPlayer, nP3Pos, &nP3Doggos, &nP3Ladders, &nP3Slides, &nP3UTurns, &nP3ObjectNavFarthest, &nWinningMove);
                 break;
             case 4:
-                //nP4Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
-                *nPosition = *nPosition + 1;
+                *nPosition = getGameplay(nCurrentPlayer, nP4Pos, &nP4Doggos, &nP4Ladders, &nP4Slides, &nP4UTurns, &nP4ObjectNavFarthest, &nWinningMove);
                 break;
             case 5:
-                //nP5Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
-                *nPosition = *nPosition + 1;
+                *nPosition = getGameplay(nCurrentPlayer, nP5Pos, &nP5Doggos, &nP5Ladders, &nP5Slides, &nP5UTurns, &nP5ObjectNavFarthest, &nWinningMove);
                 break;
         }
+
         nTurns++;
         nNewSequence = getUpdatedPlayerSequence(nNewSequence);
     } while (*nPosition != 100 && nTurns != nNumPlayers);
@@ -451,7 +453,6 @@ void fivePlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, 
     getchar(); // Consume newline from previous input
     getchar(); // Wait for Enter key press
 }
-
 
 
 /**
