@@ -131,6 +131,8 @@ void displayBoard(int nP1Pos, int nP2Pos, int nP3Pos, int nP4Pos, int nP5Pos) {
         }
         printf("\n");
     }
+
+    reset();
 }
 
 /**
@@ -250,7 +252,7 @@ void displayAllPlayersCurrentPosition(int nNumPlayers, int nP1Pos, int nP2Pos, i
  * @param nSequence is the sequence of players.
  * @return void
  */
-void displaySequenceOfPlayers(int nSequence) {
+void displaySequenceOfPlayers(int nSequence, int nCurrentPlayer) {
     int nFirstNum = 0;
     int nSecondNum = 0;
     int nThirdNum = 0;
@@ -270,26 +272,58 @@ void displaySequenceOfPlayers(int nSequence) {
         nFourthNum = nSequence / 10;
         nSequence %= 10;
         nFifthNum = nSequence;
-
-        cyan();
-        printf("P%d", nFirstNum);
+        
+        if (nCurrentPlayer == nFirstNum) {
+            cyan();
+            printf("P%d", nFirstNum);
+        } else {
+            reset();
+            printf("P%d", nFirstNum);
+        }
 
         reset();
         printf(" -> ");
 
-        printf("P%d", nSecondNum);
+        if (nCurrentPlayer == nSecondNum) {
+            cyan();
+            printf("P%d", nSecondNum);
+        } else {
+            reset();
+            printf("P%d", nSecondNum);
+        }
 
+        reset();
         printf(" -> ");
 
-        printf("P%d", nThirdNum);
+        if (nCurrentPlayer == nThirdNum) {
+            cyan();
+            printf("P%d", nThirdNum);
+        } else {
+            reset();
+            printf("P%d", nThirdNum);
+        }
 
+        reset();
         printf(" -> ");
 
-        printf("P%d", nFourthNum);
+        if (nCurrentPlayer == nFourthNum) {
+            cyan();
+            printf("P%d", nFourthNum);
+        } else {
+            reset();
+            printf("P%d", nFourthNum);
+        }
 
+        reset();
         printf(" -> ");
 
-        printf("P%d", nFifthNum);
+        if (nCurrentPlayer == nFifthNum) {
+            cyan();
+            printf("P%d", nFifthNum);
+        } else {
+            reset();
+            printf("P%d", nFifthNum);
+        }
 
     } else if (nSequence > 1000) {
         nFirstNum = nSequence / 1000;
@@ -300,21 +334,46 @@ void displaySequenceOfPlayers(int nSequence) {
         nSequence %= 10;
         nFourthNum = nSequence;
 
-        cyan();
-        printf("P%d", nFirstNum);
+        if (nCurrentPlayer == nFirstNum) {
+            cyan();
+            printf("P%d", nFirstNum);
+        } else {
+            reset();
+            printf("P%d", nFirstNum);
+        }
 
         reset();
         printf(" -> ");
 
-        printf("P%d", nSecondNum);
+        if (nCurrentPlayer == nSecondNum) {
+            cyan();
+            printf("P%d", nSecondNum);
+        } else {
+            reset();
+            printf("P%d", nSecondNum);
+        }
 
+        reset();
         printf(" -> ");
 
-        printf("P%d", nThirdNum);
+        if (nCurrentPlayer == nThirdNum) {
+            cyan();
+            printf("P%d", nThirdNum);
+        } else {
+            reset();
+            printf("P%d", nThirdNum);
+        }
 
+        reset();
         printf(" -> ");
 
-        printf("P%d", nFourthNum);
+        if (nCurrentPlayer == nFourthNum) {
+            cyan();
+            printf("P%d", nFourthNum);
+        } else {
+            reset();
+            printf("P%d", nFourthNum);
+        }
 
     } else if (nSequence > 100) {
         nFirstNum = nSequence / 100;
@@ -323,28 +382,59 @@ void displaySequenceOfPlayers(int nSequence) {
         nSequence %= 10;
         nThirdNum = nSequence;
 
-        cyan();
-        printf("P%d", nFirstNum);
+        if (nCurrentPlayer == nFirstNum) {
+            cyan();
+            printf("P%d", nFirstNum);
+        } else {
+            reset();
+            printf("P%d", nFirstNum);
+        }
 
         reset();
         printf(" -> ");
 
-        printf("P%d", nSecondNum);
+        if (nCurrentPlayer == nSecondNum) {
+            cyan();
+            printf("P%d", nSecondNum);
+        } else {
+            reset();
+            printf("P%d", nSecondNum);
+        }
 
+        reset();
         printf(" -> ");
 
-        printf("P%d", nThirdNum);
+        if (nCurrentPlayer == nThirdNum) {
+            cyan();
+            printf("P%d", nThirdNum);
+        } else {
+            reset();
+            printf("P%d", nThirdNum);
+        }
 
     } else if (nSequence > 10) {
         nFirstNum = nSequence / 10;
         nSequence %= 10;
         nSecondNum = nSequence;
 
-        cyan();
-        printf("P%d", nFirstNum);
+        if (nCurrentPlayer == nFirstNum) {
+            cyan();
+            printf("P%d", nFirstNum);
+        } else {
+            reset();
+            printf("P%d", nFirstNum);
+        }
 
         reset();
-        printf(" -> P%d", nSecondNum);
+        printf(" -> ");
+
+        if (nCurrentPlayer == nSecondNum) {
+            cyan();
+            printf("P%d", nSecondNum);
+        } else {
+            reset();
+            printf("P%d", nSecondNum);
+        }
     }
 
     reset();
@@ -371,7 +461,7 @@ void displayInitializeStatus(int nNumPlayers, int nSequence, int* nP1Pos, int* n
     printf("\n\n");
     displayAllPlayersCurrentPosition(nNumPlayers, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
  
-    displaySequenceOfPlayers(nSequence);
+    displaySequenceOfPlayers(nSequence, 0);
     printf("\n\n");
 }
 
@@ -384,4 +474,68 @@ void displayCurrentPlayer(int nCurrentPlayer) {
     cyan();
     printf("Current Turn\t\t\t: P%d\n", nCurrentPlayer);
     reset();
+}
+
+/**
+ * @brief This function displays the rankings of the players based on their positions.
+ * @param nNumPlayers is the number of players.
+ * @param nP1Pos is the position of Player 1.
+ * @param nP2Pos is the position of Player 2.
+ * @param nP3Pos is the position of Player 3.
+ * @param nP4Pos is the position of Player 4.
+ * @param nP5Pos is the position of Player 5.
+ * @return void
+ */
+void displayRankings(int nNumPlayers, int* nP1Pos, int* nP2Pos, int* nP3Pos, int* nP4Pos, int* nP5Pos) {
+    
+    // Display the rankings
+    // Header
+    printf("+------+--------+\n");
+    printf("| RANK | PLAYER |\n");
+    printf("+------+--------+\n");
+
+    switch (nNumPlayers) {
+        case 2:
+            int nPositions[2] = {*nP1Pos, *nP2Pos};
+            char* arrPlayers[3] = {"P1", "P2"};
+            int arrIndices[3];
+
+            // Initialize the array
+            for (int i = 0; i < 3; i++) {
+                arrIndices[i] = i;
+            }
+
+            // Sort based on the positions
+            for (int i = 0; i < 2; i++) {
+                for (int j = i + 1; j < 2; j++) {
+                    if (nPositions[i] < nPositions[j]) {
+                        int temp = nPositions[i];
+                        nPositions[i] = nPositions[j];
+                        nPositions[j] = temp;
+
+                        int tempIndex = arrIndices[i];
+                        arrIndices[i] = arrIndices[j];
+                        arrIndices[j] = tempIndex;
+                    }
+                }
+            }
+
+            for (int i = 0; i < nNumPlayers; i++) {
+                printf("|  %d   |  ", i + 1);
+                switch (arrIndices[i]) {
+                    case 0: red(); break;
+                    case 1: yellow(); break;
+                    case 2: green(); break;
+                    case 3: blue(); break;
+                    case 4: purple(); break;
+                }
+                printf("%s ", arrPlayers[arrIndices[i]]);
+                reset();
+
+                printf("   |\n");
+            }
+    }
+
+    // Footer
+    printf("+------+--------+\n");    
 }
