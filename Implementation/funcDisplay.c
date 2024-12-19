@@ -490,9 +490,12 @@ void displayRankings(int nNumPlayers, int* nP1Pos, int* nP2Pos, int* nP3Pos, int
     
     // Display the rankings
     // Header
-    printf("+------+--------+\n");
-    printf("| RANK | PLAYER |\n");
-    printf("+------+--------+\n");
+    printf("%48s", "+------+--------+");
+    printf("\n");
+    printf("%48s", "| RANK | PLAYER |");
+    printf("\n");
+    printf("%48s", "+------+--------+");
+    printf("\n");
 
     switch (nNumPlayers) {
         case 2:
@@ -521,7 +524,8 @@ void displayRankings(int nNumPlayers, int* nP1Pos, int* nP2Pos, int* nP3Pos, int
             }
 
             for (int i = 0; i < nNumPlayers; i++) {
-                printf("|  %d   |  ", i + 1);
+                printf("%32s", "|");
+                printf("  %d   |  ", i + 1);
                 switch (arrIndices[i]) {
                     case 0: red(); break;
                     case 1: yellow(); break;
@@ -537,5 +541,6 @@ void displayRankings(int nNumPlayers, int* nP1Pos, int* nP2Pos, int* nP3Pos, int
     }
 
     // Footer
-    printf("+------+--------+\n");    
+    printf("%48s", "+------+--------+");
+    printf("\n");   
 }

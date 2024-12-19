@@ -94,6 +94,8 @@ void twoPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, i
     // Start the game
     do {
         nCurrentPlayer = getCurrentPlayer(nNewSequence);
+        
+        printf("\n");
         displaySequenceOfPlayers(*nPlayerSequence, nCurrentPlayer);
         displayAllPlayersCurrentPosition(nNumPlayers, *nP1Pos, *nP2Pos, 0, 0, 0);
         displayCurrentPlayer(nCurrentPlayer);
@@ -122,24 +124,64 @@ void twoPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, i
     nTurns = 0;
 
     printf("\n\n");
-    printf("Would you like to display the board? [Y]es or [N]o\n");
+    printf("Would you like to display the board?");
+    blue();
+    printf("[Y]es \t");
+    red();
+    printf("[N]o \n");
+    reset();
     printf("Answer\t: ");
     scanf(" %c", &cResponse);
 
+    // Validate input for rankings display
+    while (cResponse != 'Y' && cResponse != 'y' && cResponse != 'N' && cResponse != 'n') {
+        red();
+        printf("\nSystem\t: \"Invalid input! Try again\"\n");
+        reset();
+        printf("Answer\t: ");
+        scanf(" %c", &cResponse);
+    }
+
+    // Display the board
     if (cResponse == 'Y' || cResponse == 'y') {
+        printf("\n");
+        cyan();
+        printf("%45s", "[B O A R D]");
         printf("\n\n");
+        reset();
         displayBoard(*nP1Pos, *nP2Pos, 0, 0, 0);
     }
 
     printf("\n\n");
-    printf("Would you like to display the rankings? [Y]es or [N]o\n");
+    printf("Would you like to display the rankings?");
+    blue();
+    printf("[Y]es \t");
+    red();
+    printf("[N]o \n");
+    reset();
     printf("Answer\t: ");
     scanf(" %c", &cResponse);
 
+    // Validate input for rankings display
+    while (cResponse != 'Y' && cResponse != 'y' && cResponse != 'N' && cResponse != 'n') {
+        red();
+        printf("\nSystem\t: \"Invalid input! Try again\"\n");
+        reset();
+        printf("Answer\t: ");
+        scanf(" %c", &cResponse);
+    }
+
+    // Display the rankings
     if (cResponse == 'Y' || cResponse == 'y') {
+        printf("\n");
+        cyan();
+        printf("%48s", "[R A N K I N G S]");
+        printf("\n\n");
+        reset();
         displayRankings(nNumPlayers, nP1Pos, nP2Pos, 0, 0, 0);
     }
 
+    // End of the round
     printf("\n\n");
     cyan();
     printf("Press any key to continue...");
@@ -176,6 +218,8 @@ void fivePlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, 
     // Start the game
     do {
         nCurrentPlayer = getCurrentPlayer(nNewSequence);
+        
+        printf("\n");
         displaySequenceOfPlayers(*nPlayerSequence, nCurrentPlayer);
         displayAllPlayersCurrentPosition(nNumPlayers, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
         displayCurrentPlayer(nCurrentPlayer);
@@ -213,22 +257,61 @@ void fivePlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, 
     nTurns = 0;
 
     printf("\n\n");
-    printf("Would you like to display the board? [Y]es or [N]o\n");
+    printf("Would you like to display the board?");
+    blue();
+    printf("[Y]es \t");
+    red();
+    printf("[N]o \n");
+    reset();
     printf("Answer\t: ");
     scanf(" %c", &cResponse);
 
+    // Validate input for rankings display
+    while (cResponse != 'Y' && cResponse != 'y' && cResponse != 'N' && cResponse != 'n') {
+        red();
+        printf("\nSystem\t: \"Invalid input! Try again\"\n");
+        reset();
+        printf("Answer\t: ");
+        scanf(" %c", &cResponse);
+    }
+
+    // Display the board
     if (cResponse == 'Y' || cResponse == 'y') {
+        printf("\n");
+        cyan();
+        printf("%45s", "[B O A R D]");
         printf("\n\n");
-        displayBoard(*nP1Pos, *nP2Pos, 0, 0, 0);
+        reset();
+        displayBoard(*nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
     }
 
     printf("\n\n");
-    printf("Would you like to display the rankings? [Y]es or [N]o\n");
+    printf("Would you like to display the rankings?");
+    blue();
+    printf("[Y]es \t");
+    red();
+    printf("[N]o \n");
+    reset();
     printf("Answer\t: ");
     scanf(" %c", &cResponse);
 
+    // Validate input for rankings display
+    while (cResponse != 'Y' && cResponse != 'y' && cResponse != 'N' && cResponse != 'n') {
+        red();
+        printf("\nSystem\t: \"Invalid input! Try again\"\n");
+        reset();
+        printf("Answer\t: ");
+        scanf(" %c", &cResponse);
+    }
+
+    // Display the rankings
     if (cResponse == 'Y' || cResponse == 'y') {
-        displayRankings(nNumPlayers, nP1Pos, nP2Pos, 0, 0, 0);
+        printf("\n");
+        cyan();
+        printf("%48s", "[R A N K I N G S]");
+        printf("\n\n");
+        reset();
+        displayRankings(nNumPlayers, nP1Pos, nP2Pos, nP3Pos, nP4Pos, nP5Pos);
     }
 
     printf("\n\n");
