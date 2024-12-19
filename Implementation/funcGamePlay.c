@@ -89,6 +89,7 @@ void twoPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, i
     int nTurns = 0;
     int nCurrentPlayer = 0;
     int nNewSequence = *nPlayerSequence;
+    char cResponse = ' ';
 
     // Start the game
     do {
@@ -97,17 +98,19 @@ void twoPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, i
         displayAllPlayersCurrentPosition(nNumPlayers, *nP1Pos, *nP2Pos, 0, 0, 0);
         displayCurrentPlayer(nCurrentPlayer);
 
-        char cResponse = ' ';
+        
         printf("Answer\t: ");
         scanf(" %c", &cResponse);
 
         switch (nCurrentPlayer) {
             case 1:
                 //nP1Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, 0, 0, 0);
+                *nP1Pos = *nP1Pos + 10;
                 *nPosition = *nPosition + 1;
                 break;
             case 2:
                 //nP2Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, 0, 0, 0);
+                *nP2Pos = *nP2Pos + 5;
                 *nPosition = *nPosition + 1;
                 break;
         }
@@ -117,6 +120,32 @@ void twoPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, i
     } while (*nPosition != 5 && nTurns != nNumPlayers);
 
     nTurns = 0;
+
+    printf("\n\n");
+    printf("Would you like to display the board? [Y]es or [N]o\n");
+    printf("Answer\t: ");
+    scanf(" %c", &cResponse);
+
+    if (cResponse == 'Y' || cResponse == 'y') {
+        printf("\n\n");
+        displayBoard(*nP1Pos, *nP2Pos, 0, 0, 0);
+    }
+
+    printf("\n\n");
+    printf("Would you like to display the rankings? [Y]es or [N]o\n");
+    printf("Answer\t: ");
+    scanf(" %c", &cResponse);
+
+    if (cResponse == 'Y' || cResponse == 'y') {
+        displayRankings(nNumPlayers, nP1Pos, nP2Pos, 0, 0, 0);
+    }
+
+    printf("\n\n");
+    cyan();
+    printf("Press any key to continue...");
+    reset();
+    getchar(); // Consume newline from previous input
+    getchar(); // Wait for Enter key press
 }
 
 
@@ -142,6 +171,7 @@ void fivePlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, 
     int nTurns = 0;
     int nCurrentPlayer = 0;
     int nNewSequence = *nPlayerSequence;
+    char cResponse = ' ';
 
     // Start the game
     do {
@@ -150,7 +180,7 @@ void fivePlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, 
         displayAllPlayersCurrentPosition(nNumPlayers, *nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
         displayCurrentPlayer(nCurrentPlayer);
 
-        char cResponse = ' ';
+        
         printf("Answer\t: ");
         scanf(" %c", &cResponse);
 
@@ -181,6 +211,32 @@ void fivePlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, 
     } while (*nPosition != 5 && nTurns != nNumPlayers);
 
     nTurns = 0;
+
+    printf("\n\n");
+    printf("Would you like to display the board? [Y]es or [N]o\n");
+    printf("Answer\t: ");
+    scanf(" %c", &cResponse);
+
+    if (cResponse == 'Y' || cResponse == 'y') {
+        printf("\n\n");
+        displayBoard(*nP1Pos, *nP2Pos, 0, 0, 0);
+    }
+
+    printf("\n\n");
+    printf("Would you like to display the rankings? [Y]es or [N]o\n");
+    printf("Answer\t: ");
+    scanf(" %c", &cResponse);
+
+    if (cResponse == 'Y' || cResponse == 'y') {
+        displayRankings(nNumPlayers, nP1Pos, nP2Pos, 0, 0, 0);
+    }
+
+    printf("\n\n");
+    cyan();
+    printf("Press any key to continue...");
+    reset();
+    getchar(); // Consume newline from previous input
+    getchar(); // Wait for Enter key press
 }
 
 
@@ -216,17 +272,12 @@ void startGame(int nNumPlayers, int* nPlayerSequence, int* nP1Pos, int* nP2Pos, 
         reset();
         printf("\n\n");
 
-        displayBoard(*nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
-        printf("\n\n");
+        //displayBoard(*nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
+        //printf("\n\n");
 
         switch (nNumPlayers) {
             case 2:
                 twoPlayersGamePlay(&nPosition, nNumPlayers, nPlayerSequence, nP1Pos, nP2Pos);
-                    
-
-
-
-
                 break;
             case 5:
                 fivePlayersGamePlay(&nPosition, nNumPlayers, nPlayerSequence, nP1Pos, nP2Pos, nP3Pos, nP4Pos, nP5Pos);

@@ -131,6 +131,8 @@ void displayBoard(int nP1Pos, int nP2Pos, int nP3Pos, int nP4Pos, int nP5Pos) {
         }
         printf("\n");
     }
+
+    reset();
 }
 
 /**
@@ -472,4 +474,68 @@ void displayCurrentPlayer(int nCurrentPlayer) {
     cyan();
     printf("Current Turn\t\t\t: P%d\n", nCurrentPlayer);
     reset();
+}
+
+/**
+ * @brief This function displays the rankings of the players based on their positions.
+ * @param nNumPlayers is the number of players.
+ * @param nP1Pos is the position of Player 1.
+ * @param nP2Pos is the position of Player 2.
+ * @param nP3Pos is the position of Player 3.
+ * @param nP4Pos is the position of Player 4.
+ * @param nP5Pos is the position of Player 5.
+ * @return void
+ */
+void displayRankings(int nNumPlayers, int* nP1Pos, int* nP2Pos, int* nP3Pos, int* nP4Pos, int* nP5Pos) {
+    
+    // Display the rankings
+    // Header
+    printf("+------+--------+\n");
+    printf("| RANK | PLAYER |\n");
+    printf("+------+--------+\n");
+
+    switch (nNumPlayers) {
+        case 2:
+            int nPositions[2] = {*nP1Pos, *nP2Pos};
+            char* arrPlayers[3] = {"P1", "P2"};
+            int arrIndices[3];
+
+            // Initialize the array
+            for (int i = 0; i < 3; i++) {
+                arrIndices[i] = i;
+            }
+
+            // Sort based on the positions
+            for (int i = 0; i < 2; i++) {
+                for (int j = i + 1; j < 2; j++) {
+                    if (nPositions[i] < nPositions[j]) {
+                        int temp = nPositions[i];
+                        nPositions[i] = nPositions[j];
+                        nPositions[j] = temp;
+
+                        int tempIndex = arrIndices[i];
+                        arrIndices[i] = arrIndices[j];
+                        arrIndices[j] = tempIndex;
+                    }
+                }
+            }
+
+            for (int i = 0; i < nNumPlayers; i++) {
+                printf("|  %d   |  ", i + 1);
+                switch (arrIndices[i]) {
+                    case 0: red(); break;
+                    case 1: yellow(); break;
+                    case 2: green(); break;
+                    case 3: blue(); break;
+                    case 4: purple(); break;
+                }
+                printf("%s ", arrPlayers[arrIndices[i]]);
+                reset();
+
+                printf("   |\n");
+            }
+    }
+
+    // Footer
+    printf("+------+--------+\n");    
 }
