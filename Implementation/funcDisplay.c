@@ -472,7 +472,9 @@ void displayInitializeStatus(int nNumPlayers, int nSequence, int* nP1Pos, int* n
  */
 void displayCurrentPlayer(int nCurrentPlayer) {
     cyan();
-    printf("Current Turn\t\t\t: P%d\n", nCurrentPlayer);
+    printf("[System] ");
+    reset();
+    printf("Now Playing\t\t: P%d\n", nCurrentPlayer);
     reset();
 }
 

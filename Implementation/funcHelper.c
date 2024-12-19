@@ -122,3 +122,13 @@ int getCurrentPlayer(int nSequence) {
 
     return nFirstNum;
 }
+
+/**
+ * @brief This function clears the input buffer.
+ * @param void
+ * @return void
+ */
+void clearInputBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}

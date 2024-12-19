@@ -8,6 +8,8 @@
 bool isValidResponse(char x);
 bool wantPlayAgain();
 
+int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, int* currPlayerLadders, int* currPlayerSlides, int* currPlayerUTurns, int* currPlayerObjectNavFarthest, int* nWinningMove);
+
 
 void twoPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, int* nP1Pos, int* nP2Pos);
 

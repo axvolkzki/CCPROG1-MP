@@ -70,6 +70,147 @@ bool wantPlayAgain() {
 }
 
 /**
+ * @brief This function handles the gameplay of a player.
+ * @param nCurrentPlayer is the current player.
+ * @param currPlayerPos is the current position of the player.
+ * @param currPlayerDoggos is the number of doggos the player has.
+ * @param currPlayerLadders is the number of ladders the player has.
+ * @param currPlayerSlides is the number of slides the player has.
+ * @param currPlayerUTurns is the number of U-turns the player has.
+ * @param currPlayerObjectNavFarthest is the farthest object navigated by the player.
+ * @param nWinningMove is the winning move.
+ * @return int is the new position that triggers if there is a winning move.
+ */
+int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, int* currPlayerLadders, int* currPlayerSlides, int* currPlayerUTurns, int* currPlayerObjectNavFarthest, int* nWinningMove) {
+    // Variables
+    int nRow, nColumn, nTile, nDiceObject;
+    int nDoggos = *currPlayerDoggos;
+    int nLadders = *currPlayerLadders;
+    int nSlides = *currPlayerSlides;
+    int nUTurns = *currPlayerUTurns;
+    int nObjectNavFarthest = *currPlayerObjectNavFarthest;
+    int cResponse = ' ';
+    int nPosition = *currPlayerPos;
+
+    //printf("Debugger: nPosition = %d\n", nPosition);
+
+    // Start of the game
+    cyan();
+    printf("[System] ");
+    reset();
+    printf("[%d] Player %d, please roll a pair of D10 dice by entering any key.", nPosition, nCurrentPlayer);
+    scanf(" %c", &cResponse);
+    
+
+    if (nPosition >= 90 && nPosition <= 99) {
+        // Start moving the player
+        nColumn = getDieMovement();
+        nTile = nPosition + nColumn;
+        
+        if (nTile > 100) {
+            nTile = 100 - (nTile - 100);
+        }
+
+        // Check if there is an object in the tile
+        //nDiceObject = getDieMovement();
+        nDiceObject = 1;
+
+        switch (nDiceObject) {
+            case 1:
+                nRow = getDieMovement();
+                nColumn = getDieMovement();
+                int tempTile = 0;
+
+                if (nRow % 2 == 0) {
+                    tempTile = ((nRow * 10) - (nColumn - 1));
+                } else {
+                    tempTile = (((nRow - 1) * 10) + nColumn);
+                }
+
+                if (nTile < tempTile) {
+                    cyan();
+                    printf("\n[System] ");
+                    reset();
+                    printf("A doggo is on tile %d. Yay! Please follow the doggo to tile %d (row: %d, col: %d).\n", nTile, tempTile, nRow, nColumn);
+                    
+                    nTile = tempTile;
+                    nDoggos++;
+
+                    if (nTile > nObjectNavFarthest) {
+                        nObjectNavFarthest = nTile;
+                    }
+
+
+                }
+        }
+
+    } else if (nPosition >= 0 && nPosition <= 89) {
+        // Start moving the player
+        nRow = getDieMovement();
+        nColumn = getDieMovement();
+        
+        if (nRow % 2 == 0) {
+            nTile = ((nRow * 10) - (nColumn - 1));
+        } else {
+            nTile = (((nRow - 1) * 10) + nColumn);
+        }
+
+        cyan();
+        printf("[System] ");
+        reset();
+        printf("You rolled %d and %d. Please proceed to tile %d.", nRow, nColumn, nTile);
+        
+        // Check if there is an object in the tile
+        //nDiceObject = getDieMovement();
+        nDiceObject = 1;
+
+        switch (nDiceObject) {
+            case 1:
+                nRow = getDieMovement();
+                nColumn = getDieMovement();
+                int tempTile = 0;
+
+                if (nRow % 2 == 0) {
+                    tempTile = ((nRow * 10) - (nColumn - 1));
+                } else {
+                    tempTile = (((nRow - 1) * 10) + nColumn);
+                }
+
+                if (nTile < tempTile) {
+                    cyan();
+                    printf("\n[System] ");
+                    reset();
+                    printf("A doggo is on tile %d. Yay! Please follow the doggo to tile %d (row: %d, col: %d).\n", nTile, tempTile, nRow, nColumn);
+                    
+                    nTile = tempTile;
+                    nDoggos++;
+
+                    if (nTile > nObjectNavFarthest) {
+                        nObjectNavFarthest = nTile;
+                    }
+
+
+                }
+        }
+    }
+
+    nPosition = nTile;
+    *currPlayerPos = nTile;
+    *currPlayerDoggos = nDoggos;
+    *currPlayerLadders = nLadders;
+    *currPlayerSlides = nSlides;
+    *currPlayerUTurns = nUTurns;
+    *currPlayerObjectNavFarthest = nObjectNavFarthest;
+
+    if (nPosition == 100) {
+        *nWinningMove = nDiceObject;
+    }
+
+    
+    return nPosition;
+}
+
+/**
  * @brief This function handles the gameplay for two players.
  * @param nNumPlayers is the number of players.
  * @param nPlayerSequence is the sequence of players.
@@ -94,32 +235,21 @@ void twoPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, i
     // Start the game
     do {
         nCurrentPlayer = getCurrentPlayer(nNewSequence);
-        
-        printf("\n");
-        displaySequenceOfPlayers(*nPlayerSequence, nCurrentPlayer);
-        displayAllPlayersCurrentPosition(nNumPlayers, *nP1Pos, *nP2Pos, 0, 0, 0);
+        printf("\n\n");
         displayCurrentPlayer(nCurrentPlayer);
-
-        
-        printf("Answer\t: ");
-        scanf(" %c", &cResponse);
 
         switch (nCurrentPlayer) {
             case 1:
-                //nP1Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, 0, 0, 0);
-                *nP1Pos = *nP1Pos + 10;
-                *nPosition = *nPosition + 1;
+                *nPosition = getGameplay(nCurrentPlayer, nP1Pos, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
                 break;
             case 2:
-                //nP2Pos = getGameplay(nCurrentPlayer, nPosition, *nP1Pos, *nP2Pos, 0, 0, 0);
-                *nP2Pos = *nP2Pos + 5;
-                *nPosition = *nPosition + 1;
+                *nPosition = getGameplay(nCurrentPlayer, nP2Pos, &nP2Doggos, &nP2Ladders, &nP2Slides, &nP2UTurns, &nP2ObjectNavFarthest, &nWinningMove);
                 break;
         }
 
         nTurns++;
         nNewSequence = getUpdatedPlayerSequence(nNewSequence);
-    } while (*nPosition != 5 && nTurns != nNumPlayers);
+    } while (*nPosition != 100 && nTurns != nNumPlayers);
 
     nTurns = 0;
 
@@ -252,7 +382,7 @@ void fivePlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, 
         }
         nTurns++;
         nNewSequence = getUpdatedPlayerSequence(nNewSequence);
-    } while (*nPosition != 5 && nTurns != nNumPlayers);
+    } while (*nPosition != 100 && nTurns != nNumPlayers);
 
     nTurns = 0;
 
@@ -358,6 +488,12 @@ void startGame(int nNumPlayers, int* nPlayerSequence, int* nP1Pos, int* nP2Pos, 
         //displayBoard(*nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
         //printf("\n\n");
 
+        cyan();
+        printf("\n[System]\n");
+        reset();
+        displaySequenceOfPlayers(*nPlayerSequence, nCurrentPlayer);
+        displayAllPlayersCurrentPosition(nNumPlayers, *nP1Pos, *nP2Pos, 0, 0, 0);
+        
         switch (nNumPlayers) {
             case 2:
                 twoPlayersGamePlay(&nPosition, nNumPlayers, nPlayerSequence, nP1Pos, nP2Pos);
@@ -368,7 +504,7 @@ void startGame(int nNumPlayers, int* nPlayerSequence, int* nP1Pos, int* nP2Pos, 
         }
 
 
-    } while (nPosition != 5);
+    } while (nPosition != 100);
 }
 
 /**
