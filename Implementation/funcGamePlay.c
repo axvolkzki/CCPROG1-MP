@@ -14,7 +14,6 @@
 #include "../Header/funcDisplay.h"
 
 
-
 /**
  * @brief This function checks if the response is valid for replaying the game.
  * @param x is the response of the user.
@@ -135,15 +134,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
 
         switch (nDiceObject) {
             case 1: // Doggo
-                // nRow = getDieMovement();
-                // nColumn = getDieMovement();
-
-                // if (nRow % 2 == 0) {
-                //     tempTile = ((nRow * 10) - (nColumn - 1));
-                // } else {
-                //     tempTile = (((nRow - 1) * 10) + nColumn);
-                // }
-
+                // Goes anywhere on the board
                 if (nTile < tempTile) {
                     cyan();
                     printf("\n[System] ");
@@ -171,15 +162,6 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                 //nDiceObject = getDieMovement();
                 break;
             case 3: // Slide
-                // nRow = getDieMovement();
-                // nColumn = getDieMovement();
-
-                // if (nRow % 2 == 0) {
-                //     tempTile = ((nRow * 10) - (nColumn - 1));
-                // } else {
-                //     tempTile = (((nRow - 1) * 10) + nColumn);
-                // }
-
                 // Ensure that the destination tile is less than the current tile
                 while (nTile <= tempTile) {
                     nRow = getDieMovement();
@@ -203,8 +185,8 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                 }
                 break;
             case 4: // U-Turn
-                int nPrevRow, nPrevColumn;
                 // The user will go back to the previous position
+                int nPrevRow, nPrevColumn;
                 
                 if (nPosition % 10 == 0) { // If the player is on the even row
                     if (nPosition == 0) {
@@ -273,16 +255,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
 
         switch (nDiceObject) {
             case 1: // Doggo
-                // nRow = getDieMovement();
-                // nColumn = getDieMovement();
-                
-
-                // if (nRow % 2 == 0) {
-                //     tempTile = ((nRow * 10) - (nColumn - 1));
-                // } else {
-                //     tempTile = (((nRow - 1) * 10) + nColumn);
-                // }
-
+                // Goes anywhere on the board
                 if (nTile < tempTile) {
                     cyan();
                     printf("\n[System] ");
@@ -306,15 +279,6 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                 }
                 break;
             case 2: // Ladder
-                // nRow = getDieMovement();
-                // nColumn = getDieMovement();
-
-                // if (nRow % 2 == 0) {
-                //     tempTile = ((nRow * 10) - (nColumn - 1));
-                // } else {
-                //     tempTile = (((nRow - 1) * 10) + nColumn);
-                // }
-
                 // Ensure that the destination tile is greater than the current tile
                 while (nTile >= tempTile) {
                     nRow = getDieMovement();
@@ -342,15 +306,6 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                 }
                 break;
             case 3: // Slide
-                // nRow = getDieMovement();
-                // nColumn = getDieMovement();
-
-                // if (nRow % 2 == 0) {
-                //     tempTile = ((nRow * 10) - (nColumn - 1));
-                // } else {
-                //     tempTile = (((nRow - 1) * 10) + nColumn);
-                // }
-
                 // Ensure that the destination tile is greater than the current tile
                 while (nTile <= tempTile) {
                     nRow = getDieMovement();
@@ -374,9 +329,9 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                 }
                 break;
             case 4: // U-Turn
-                int nPrevRow, nPrevColumn;
                 // The user will go back to the previous position
-
+                int nPrevRow, nPrevColumn;
+                
                 if (nPosition % 10 == 0) { // If the player is on the even row
                     if (nPosition == 0) {
                         nPrevRow = 0;
