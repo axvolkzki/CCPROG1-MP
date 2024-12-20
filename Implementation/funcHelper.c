@@ -79,6 +79,40 @@ int getDieMovement() {
 }
 
 /**
+ * @brief This function implemennets the roll of double fives.
+ * @param nPosition is the position of the player.
+ * @param nRow is the row position of the player.
+ * @param nColumn is the column position of the player.
+ * @return int is the position of the player.
+ */
+int getRollDoubleFive(int nPosition, int nRow, int nColumn) {
+    int nStayRow, nStayColumn;
+
+    if (nPosition % 10 == 0) { // If the player is on the even row
+        if (nPosition == 0) {
+            nStayRow = 0;
+            nStayColumn = 0;
+        } else {
+            nStayRow = nPosition / 10;
+            nStayColumn = (nPosition % 10) + 1;
+        }
+    } else {
+        nStayRow = (nPosition / 10) + 1;
+        nStayColumn = nPosition % 10;
+    }
+
+    cyan();
+    printf("[System] ");
+    reset();
+    printf("You rolled %d and %d. You missed your turn, don't move!\n", nRow, nColumn);
+    cyan();
+    printf("[System] ");
+    reset();
+    printf("Sorry! Please stay on tile %d (row %d, col %d).\n", nPosition, nStayRow, nStayColumn);
+    return nPosition; // Will not proceed to objects & go back to main
+}
+
+/**
  * @brief This function gets the updated player sequence.
  * @param nSequence is the sequence of players.
  * @return int is the new sequence of players.

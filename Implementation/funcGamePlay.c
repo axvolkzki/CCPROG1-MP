@@ -212,7 +212,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                 cyan();
                 printf("\n[System] ");
                 reset();
-                printf("No object appears on tile %d. Switching Players!\n", nTile);
+                printf("There is no doggo, ladder, slide nor U-turn on tile %d. Switching Players!\n", nTile);
                 break;
         }
 
@@ -220,6 +220,16 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
         // Start moving the player
         nRow = getDieMovement();
         nColumn = getDieMovement();
+
+        // Debugger
+        //nRow = 5;
+        //nColumn = 5;
+
+        // If nRow == 5 and nColumn == 5, the player will miss their turn
+        if (nRow == 5 && nColumn == 5) {
+            nPosition = getRollDoubleFive(nPosition, nRow, nColumn);
+            return nPosition;
+        }
         
         if (nRow % 2 == 0) {
             nTile = ((nRow * 10) - (nColumn - 1));
@@ -356,7 +366,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                 cyan();
                 printf("\n[System] ");
                 reset();
-                printf("No object appears on tile %d. Switching Players!\n", nTile);
+                printf("There is no doggo, ladder, slide nor U-turn on tile %d. Switching Players!\n", nTile);
                 break;
         }
     }
