@@ -226,6 +226,12 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
 
                 nTile = nPosition;
                 break;
+            default:
+                cyan();
+                printf("\n[System] ");
+                reset();
+                printf("No object appears on tile %d. Switching Players!\n", nTile);
+                break;
         }
 
     } else if (nPosition >= 0 && nPosition <= 89) {
@@ -390,6 +396,12 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                 printf("A U-turn is on tile %d. Sorry! Please go back to tile %d (row: %d, col: %d).\n", nTile, nPosition, nPrevRow, nPrevColumn);
 
                 nTile = nPosition;
+                break;
+            default:
+                cyan();
+                printf("\n[System] ");
+                reset();
+                printf("No object appears on tile %d. Switching Players!\n", nTile);
                 break;
         }
     }
