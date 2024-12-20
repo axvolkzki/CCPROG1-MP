@@ -126,11 +126,13 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
         nRow = getDieMovement();
         nColumn = getDieMovement();
 
-        if (nRow % 2 == 0) {
-            tempTile = ((nRow * 10) - (nColumn - 1));
-        } else {
-            tempTile = (((nRow - 1) * 10) + nColumn);
-        }
+        // if (nRow % 2 == 0) {
+        //     tempTile = ((nRow * 10) - (nColumn - 1));
+        // } else {
+        //     tempTile = (((nRow - 1) * 10) + nColumn);
+        // }
+        // Get the destination tile based on the object
+        tempTile = getTileMovement(nRow, nColumn);
 
         switch (nDiceObject) {
             case 1: // Doggo
@@ -235,11 +237,13 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
         if (nRow == 3 && nColumn == 3) {
             nTile = getRollDoubleThree(nPosition, nRow, nColumn);
         } else {
-            if (nRow % 2 == 0) {
-                nTile = ((nRow * 10) - (nColumn - 1));
-            } else {
-                nTile = (((nRow - 1) * 10) + nColumn);
-            }
+            // if (nRow % 2 == 0) {
+            //     nTile = ((nRow * 10) - (nColumn - 1));
+            // } else {
+            //     nTile = (((nRow - 1) * 10) + nColumn);
+            // }
+            // Get the destination tile on normal circumstances
+            nTile = getTileMovement(nRow, nColumn);
 
             cyan();
             printf("[System] ");
@@ -263,11 +267,13 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
         nRow = getDieMovement();
         nColumn = getDieMovement();
 
-        if (nRow % 2 == 0) {
-            tempTile = ((nRow * 10) - (nColumn - 1));
-        } else {
-            tempTile = (((nRow - 1) * 10) + nColumn);
-        }
+        // if (nRow % 2 == 0) {
+        //     tempTile = ((nRow * 10) - (nColumn - 1));
+        // } else {
+        //     tempTile = (((nRow - 1) * 10) + nColumn);
+        // }
+        // Get the destination tile based on the object
+        tempTile = getTileMovement(nRow, nColumn);
 
         switch (nDiceObject) {
             case 1: // Doggo

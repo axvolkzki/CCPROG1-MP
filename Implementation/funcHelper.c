@@ -174,6 +174,24 @@ int getRollDoubleThree(int nPosition, int nRow, int nColumn) {
 }
 
 /**
+ * @brief This function gets the tile movement of the player.
+ * @param nRow is the row position of the player.
+ * @param nColumn is the column position of the player.
+ * @return int is the tile movement of the player.
+ */
+int getTileMovement(int nRow, int nColumn) {
+    int nTile = 0;
+
+    if (nRow % 2 == 0) {
+        nTile = ((nRow * 10) - (nColumn - 1));
+    } else {
+        nTile = (((nRow - 1) * 10) + nColumn);
+    }
+
+    return nTile;
+}
+
+/**
  * @brief This function gets the updated player sequence.
  * @param nSequence is the sequence of players.
  * @return int is the new sequence of players.
