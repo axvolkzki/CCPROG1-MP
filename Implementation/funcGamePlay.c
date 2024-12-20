@@ -126,11 +126,6 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
         nRow = getDieMovement();
         nColumn = getDieMovement();
 
-        // if (nRow % 2 == 0) {
-        //     tempTile = ((nRow * 10) - (nColumn - 1));
-        // } else {
-        //     tempTile = (((nRow - 1) * 10) + nColumn);
-        // }
         // Get the destination tile based on the object
         tempTile = getTileMovement(nRow, nColumn);
 
@@ -220,12 +215,12 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
 
     } else if (nPosition >= 0 && nPosition <= 89) {
         // Start moving the player
-        //nRow = getDieMovement();
-        //nColumn = getDieMovement();
+        nRow = getDieMovement();
+        nColumn = getDieMovement();
 
         // Debugger
-        nRow = 3;
-        nColumn = 3;
+        //nRow = 3;
+        //nColumn = 3;
 
         // If nRow == 5 and nColumn == 5, the player will miss their turn
         if (nRow == 5 && nColumn == 5) {
@@ -237,11 +232,6 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
         if (nRow == 3 && nColumn == 3) {
             nTile = getRollDoubleThree(nPosition, nRow, nColumn);
         } else {
-            // if (nRow % 2 == 0) {
-            //     nTile = ((nRow * 10) - (nColumn - 1));
-            // } else {
-            //     nTile = (((nRow - 1) * 10) + nColumn);
-            // }
             // Get the destination tile on normal circumstances
             nTile = getTileMovement(nRow, nColumn);
 
@@ -267,11 +257,6 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
         nRow = getDieMovement();
         nColumn = getDieMovement();
 
-        // if (nRow % 2 == 0) {
-        //     tempTile = ((nRow * 10) - (nColumn - 1));
-        // } else {
-        //     tempTile = (((nRow - 1) * 10) + nColumn);
-        // }
         // Get the destination tile based on the object
         tempTile = getTileMovement(nRow, nColumn);
 
