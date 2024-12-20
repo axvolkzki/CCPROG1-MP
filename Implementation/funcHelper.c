@@ -113,6 +113,67 @@ int getRollDoubleFive(int nPosition, int nRow, int nColumn) {
 }
 
 /**
+ * @brief This function implements the roll of double threes.
+ * @param nPosition is the position of the player.
+ * @param nRow is the row position of the player.
+ * @param nColumn is the column position of the player.
+ * @return int is the position of the player.
+ */
+int getRollDoubleThree(int nPosition, int nRow, int nColumn) {
+    int nTile = 0;
+
+    // If nPosition >= 71 && nPosition <= 99, the player will move to tile 99
+    if (nPosition >= 71 && nPosition <= 99) {
+        nTile = 99;
+        nPosition = nTile;
+        nRow = 10;
+        nColumn = 2;
+
+        cyan();
+        printf("[System] ");
+        reset();
+        printf("You rolled 3 and 3. Please proceed to tile %d (row: %d, col: %d).\n", nTile, nRow, nColumn);
+    } else {
+        // Extract the row and column of the player
+        if (nPosition % 10 == 0) { // If the player is on the even row
+            if (nPosition == 0) {
+                nRow = 0;
+                nColumn = 0;
+            } else {
+                nRow = nPosition / 10;
+                nColumn = (nPosition % 10) + 1;
+            }
+        } else {
+            nRow = (nPosition / 10) + 1;
+            nColumn = nPosition % 10;
+        }
+
+        //printf("Debugger (Before): nRow = %d, nColumn = %d\n", nRow, nColumn);
+        // Add 3 to the row, and 1 to the column
+        nRow += 3;
+        
+        if (nColumn == 0) {
+            nColumn += 1;
+        }
+        //printf("Debugger (After): nRow = %d, nColumn = %d\n", nRow, nColumn);
+
+        // New tile
+        if (nRow % 2 == 0) {
+            nTile = ((nRow * 10) - (nColumn - 1));
+        } else {
+            nTile = (((nRow - 1) * 10) + nColumn);
+        }
+
+        cyan();
+        printf("[System] ");
+        reset();
+        printf("You rolled 3 and 3. Please proceed to tile %d (row: %d, col: %d).", nTile, nRow, nColumn);
+    }
+
+    return nTile;
+}
+
+/**
  * @brief This function gets the updated player sequence.
  * @param nSequence is the sequence of players.
  * @return int is the new sequence of players.
