@@ -113,8 +113,8 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
         }
 
         // Check if there is an object in the tile
-        //nDiceObject = getDieMovement();
-        nDiceObject = 3;
+        nDiceObject = getDieMovement();
+        //nDiceObject = 4;    // Debugger
 
         // Restrict ladders on tiles 90 to 99
         if (nTile >= 90 && nTile <= 99 && nDiceObject == 2) {
@@ -202,7 +202,30 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                     nSlides++;
                 }
                 break;
+            case 4: // U-Turn
+                int nPrevRow, nPrevColumn;
+                // The user will go back to the previous position
                 
+                if (nPosition % 10 == 0) { // If the player is on the even row
+                    if (nPosition == 0) {
+                        nPrevRow = 0;
+                        nPrevColumn = 0;
+                    } else {
+                        nPrevRow = nPosition / 10;
+                        nPrevColumn = (nPosition % 10) + 1;
+                    }
+                } else {
+                    nPrevRow = (nPosition / 10) + 1;
+                    nPrevColumn = nPosition % 10;
+                }
+
+                cyan();
+                printf("\n[System] ");
+                reset();
+                printf("A U-turn is on tile %d. Sorry! Please go back to tile %d (row: %d, col: %d).\n", nTile, nPosition, nPrevRow, nPrevColumn);
+
+                nTile = nPosition;
+                break;
         }
 
     } else if (nPosition >= 0 && nPosition <= 89) {
@@ -222,8 +245,8 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
         printf("You rolled %d and %d. Please proceed to tile %d.", nRow, nColumn, nTile);
         
         // Check if there is an object in the tile
-        //nDiceObject = getDieMovement();
-        nDiceObject = 3;
+        nDiceObject = getDieMovement();
+        //nDiceObject = 4;    // Debugger
 
         // Restrict slides on tiles 1 to 10
         if (nTile >= 1 && nTile <= 10 && nDiceObject == 3) {
@@ -343,6 +366,30 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                     nTile = tempTile;
                     nSlides++;
                 }
+                break;
+            case 4: // U-Turn
+                int nPrevRow, nPrevColumn;
+                // The user will go back to the previous position
+
+                if (nPosition % 10 == 0) { // If the player is on the even row
+                    if (nPosition == 0) {
+                        nPrevRow = 0;
+                        nPrevColumn = 0;
+                    } else {
+                        nPrevRow = nPosition / 10;
+                        nPrevColumn = (nPosition % 10) + 1;
+                    }
+                } else {
+                    nPrevRow = (nPosition / 10) + 1;
+                    nPrevColumn = nPosition % 10;
+                }
+
+                cyan();
+                printf("\n[System] ");
+                reset();
+                printf("A U-turn is on tile %d. Sorry! Please go back to tile %d (row: %d, col: %d).\n", nTile, nPosition, nPrevRow, nPrevColumn);
+
+                nTile = nPosition;
                 break;
         }
     }
@@ -469,8 +516,9 @@ void twoPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, i
     cyan();
     printf("[System] Press any key to continue...");
     reset();
-    getchar(); // Consume newline from previous input
-    getchar(); // Wait for Enter key press
+    // getchar(); // Consume newline from previous input
+    // getchar(); // Wait for Enter key press
+    scanf(" %c", &cResponse);
 }
 
 
