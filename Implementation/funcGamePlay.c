@@ -93,6 +93,17 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
     int tempTile = 0;
 
     //printf("Debugger: nPosition = %d\n", nPosition);
+    // Debugger - for testing the winning move
+    // if (nCurrentPlayer == 1) {
+    //     *currPlayerPos = 100;
+    //     *currPlayerDoggos = 1;
+    //     *currPlayerLadders = 10;
+    //     *currPlayerSlides = 20;
+    //     *currPlayerUTurns = 30;
+    //     *currPlayerObjectNavFarthest = 2;
+    //     *nWinningMove = 1;
+    //     return 100;
+    // }
 
     // Start of the game
     cyan();
@@ -134,7 +145,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                 // Goes anywhere on the board
                 if (nTile < tempTile) {
                     cyan();
-                    printf("\n[System] ");
+                    printf("[System] ");
                     reset();
                     printf("A doggo is on tile %d. Yay! Please follow the doggo to tile %d (row: %d, col: %d).\n", nTile, tempTile, nRow, nColumn);
                     
@@ -146,7 +157,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                     }
                 } else {
                     cyan();
-                    printf("\n[System] ");
+                    printf("[System] ");
                     reset();
                     printf("A doggo is on tile %d. Nay! Please follow the doggo to tile %d (row: %d, col: %d).\n", nTile, tempTile, nRow, nColumn);
                     
@@ -173,7 +184,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
 
                 if (nTile > tempTile) {
                     cyan();
-                    printf("\n[System] ");
+                    printf("[System] ");
                     reset();
                     printf("A slide is on tile %d. Nay! Please slide down to tile %d (row: %d, col: %d).\n", nTile, tempTile, nRow, nColumn);
                     
@@ -199,7 +210,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                 }
 
                 cyan();
-                printf("\n[System] ");
+                printf("[System] ");
                 reset();
                 printf("A U-turn is on tile %d. Sorry! Please go back to tile %d (row: %d, col: %d).\n", nTile, nPosition, nPrevRow, nPrevColumn);
 
@@ -207,7 +218,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                 break;
             default:
                 cyan();
-                printf("\n[System] ");
+                printf("[System] ");
                 reset();
                 printf("There is no doggo, ladder, slide nor U-turn on tile %d. Switching Players!\n", nTile);
                 break;
@@ -238,7 +249,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
             cyan();
             printf("[System] ");
             reset();
-            printf("You rolled %d and %d. Please proceed to tile %d.", nRow, nColumn, nTile);
+            printf("You rolled %d and %d. Please proceed to tile %d.\n", nRow, nColumn, nTile);
         }
         
         
@@ -265,7 +276,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                 // Goes anywhere on the board
                 if (nTile < tempTile) {
                     cyan();
-                    printf("\n[System] ");
+                    printf("[System] ");
                     reset();
                     printf("A doggo is on tile %d. Yay! Please follow the doggo to tile %d (row: %d, col: %d).\n", nTile, tempTile, nRow, nColumn);
                     
@@ -277,7 +288,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                     }
                 } else {
                     cyan();
-                    printf("\n[System] ");
+                    printf("[System] ");
                     reset();
                     printf("A doggo is on tile %d. Nay! Please follow the doggo to tile %d (row: %d, col: %d).\n", nTile, tempTile, nRow, nColumn);
                     
@@ -300,7 +311,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
 
                 if (nTile < tempTile) {
                     cyan();
-                    printf("\n[System] ");
+                    printf("[System] ");
                     reset();
                     printf("A ladder is on tile %d. Yay! Please climb the ladder to tile %d (row: %d, col: %d).\n", nTile, tempTile, nRow, nColumn);
                     
@@ -327,7 +338,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
 
                 if (nTile > tempTile) {
                     cyan();
-                    printf("\n[System] ");
+                    printf("[System] ");
                     reset();
                     printf("A slide is on tile %d. Nay! Please slide down to tile %d (row: %d, col: %d).\n", nTile, tempTile, nRow, nColumn);
                     
@@ -353,7 +364,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                 }
 
                 cyan();
-                printf("\n[System] ");
+                printf("[System] ");
                 reset();
                 printf("A U-turn is on tile %d. Sorry! Please go back to tile %d (row: %d, col: %d).\n", nTile, nPosition, nPrevRow, nPrevColumn);
 
@@ -361,7 +372,7 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
                 break;
             default:
                 cyan();
-                printf("\n[System] ");
+                printf("[System] ");
                 reset();
                 printf("There is no doggo, ladder, slide nor U-turn on tile %d. Switching Players!\n", nTile);
                 break;
@@ -415,9 +426,19 @@ void twoPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, i
         switch (nCurrentPlayer) {
             case 1:
                 *nPosition = getGameplay(nCurrentPlayer, nP1Pos, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+
+                if (*nPosition == 100) {
+                    displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                }
+
                 break;
             case 2:
                 *nPosition = getGameplay(nCurrentPlayer, nP2Pos, &nP2Doggos, &nP2Ladders, &nP2Slides, &nP2UTurns, &nP2ObjectNavFarthest, &nWinningMove);
+                
+                if (*nPosition == 100) {
+                    displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                }
+                
                 break;
         }
 
@@ -529,18 +550,43 @@ void fivePlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, 
         switch (nCurrentPlayer) {
             case 1:
                 *nPosition = getGameplay(nCurrentPlayer, nP1Pos, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+
+                if (*nPosition == 100) {
+                    displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                }
+
                 break;
             case 2:
                 *nPosition = getGameplay(nCurrentPlayer, nP2Pos, &nP2Doggos, &nP2Ladders, &nP2Slides, &nP2UTurns, &nP2ObjectNavFarthest, &nWinningMove);
+                
+                if (*nPosition == 100) {
+                    displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                }
+
                 break;
             case 3:
                 *nPosition = getGameplay(nCurrentPlayer, nP3Pos, &nP3Doggos, &nP3Ladders, &nP3Slides, &nP3UTurns, &nP3ObjectNavFarthest, &nWinningMove);
+                
+                if (*nPosition == 100) {
+                    displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                }
+
                 break;
             case 4:
                 *nPosition = getGameplay(nCurrentPlayer, nP4Pos, &nP4Doggos, &nP4Ladders, &nP4Slides, &nP4UTurns, &nP4ObjectNavFarthest, &nWinningMove);
+                
+                if (*nPosition == 100) {
+                    displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                }
+
                 break;
             case 5:
                 *nPosition = getGameplay(nCurrentPlayer, nP5Pos, &nP5Doggos, &nP5Ladders, &nP5Slides, &nP5UTurns, &nP5ObjectNavFarthest, &nWinningMove);
+                
+                if (*nPosition == 100) {
+                    displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                }
+
                 break;
         }
 

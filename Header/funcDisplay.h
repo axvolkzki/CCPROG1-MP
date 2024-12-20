@@ -20,3 +20,4 @@ void displayAllPlayersCurrentPosition(int nNumPlayers, int nP1Pos, int nP2Pos, i
 void displayInitializeStatus(int nNumPlayers, int nSequence, int* nP1Pos, int* nP2Pos, int* nP3Pos, int* nP4Pos, int* nP5Pos);  // Game's initialization status
 void displayCurrentPlayer(int nCurrentPlayer);  // Current player
 void displayRankings(int nNumPlayers, int* nP1Pos, int* nP2Pos, int* nP3Pos, int* nP4Pos, int* nP5Pos);  // Rankings of the players
+void displayWinnerSummary(int nCurrentPlayer, int* nCurrDoggos, int* nCurrLadders, int* nCurrSlides, int* nCurrUTurns, int* nCurrObjectNavFarthest, int* nWinningMove);  // Winner's summary

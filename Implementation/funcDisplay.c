@@ -546,3 +546,58 @@ void displayRankings(int nNumPlayers, int* nP1Pos, int* nP2Pos, int* nP3Pos, int
     printf("%48s", "+------+--------+");
     printf("\n");   
 }
+
+/**
+ * @brief This function displays the winner of the game.
+ * @param nCurrentPlayer is the current player.
+ * @param nCurrDoggo is the current number of doggos.
+ * @param nCurrLadder is the current number of ladders.
+ * @param nCurrSlide is the current number of slides.
+ * @param nCurrUTurn is the current number of U-turns.
+ * @param nCurrObjectNavFarthest is the farthest object navigated.
+ * @param nWinningMove is the winning move.
+ * @return void
+ */
+void displayWinnerSummary(int nCurrentPlayer, int* nCurrDoggos, int* nCurrLadders, int* nCurrSlides, int* nCurrUTurns, int* nCurrObjectNavFarthest, int* nWinningMove) {
+    printf("\n");
+    cyan();
+    printf("%55s", "[Winner Winner Chicken Dinner!]\n");
+    printf("\n");
+    reset();
+    printf("You reached the goal! YOU WIN!\n");
+    printf("Doggo appeared %d times.\n", *nCurrDoggos);
+    printf("You climbed ladders %d times.\n", *nCurrLadders);
+    printf("You rode slides %d times.\n", *nCurrSlides);
+    printf("You took U-turns %d times.\n", *nCurrUTurns);
+
+    switch (*nCurrObjectNavFarthest) {
+        case 1:
+            printf("The doggo took you to the farthest tile.\n");
+            break;
+        case 2:
+            printf("The ladder took you to the farthest tile.\n");
+            break;
+        case 3:
+            printf("The slide took you to the farthest tile.\n");
+            break;
+        case 4:
+            printf("The U-turn took you to the farthest tile.\n");
+            break;
+    }
+
+    switch (*nWinningMove) {
+        case 1:
+            printf("The winning move was when you followed the doggo.\n");
+            break;
+        case 2:
+            printf("The winning move was when you climbed the ladder.\n");
+            break;
+        case 3:
+            printf("The winning move was when you rode the slide.\n");
+            break;
+        case 4:
+            printf("The winning move was when you took the U-turn.\n");
+            break;
+    }
+    printf("\n\n");
+}
