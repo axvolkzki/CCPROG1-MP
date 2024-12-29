@@ -12,6 +12,20 @@
 #define BOARD_WIDTH 10
 #define BOARD_HEIGHT 10
 
+/**
+ * @brief This function displays the acknowledgements of the game.
+ * @param void
+ * @return void
+ */
+void displayAcknowledgements() {
+    printf("Acknowledgement List: \n\n");
+    printf("1. Can someone explain how to append an element to an array in C programming? (n.d.). Stack Overflow. https://stackoverflow.com/questions/26208788/can-someone-explain-how-to-append-an-element-to-an-array-in-c-programming\n");
+    printf("2. C library function to perform sort. (n.d.). Stack Overflow. https://stackoverflow.com/questions/1787996/c-library-function-to-perform-sort\n");
+    printf("3. Conditional (ternary) operator - JavaScript | MDN. (2024, December 19). MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator\n");
+    printf("4. How to remove duplicate output in C program? (n.d.). Stack Overflow. https://stackoverflow.com/questions/27972225/how-to-remove-duplicate-output-in-c-program\n");
+    printf("5. Malagi, S. S. (2021, August 2). Introduction to C/C++ Documentation with Doxygen. https://www.linkedin.com/pulse/doxygen-santosh-s-malagi#:~:text=A%20function's%20documentation%20must%20include%20the%20following,*%20@see%20to%20refer%20to%20related%20functions.\n");
+    printf("6. Penguin, U. (2022, September 12). Adding color to your output from C. The Urban Penguin. https://www.theurbanpenguin.com/4184-2/\n");
+}
 
 /**
  * @brief This function displays the divider of the game.
@@ -472,7 +486,9 @@ void displayInitializeStatus(int nNumPlayers, int nSequence, int* nP1Pos, int* n
  */
 void displayCurrentPlayer(int nCurrentPlayer) {
     cyan();
-    printf("Current Turn\t\t\t: P%d\n", nCurrentPlayer);
+    printf("[System] ");
+    reset();
+    printf("Now Playing\t\t: P%d\n", nCurrentPlayer);
     reset();
 }
 
@@ -490,9 +506,12 @@ void displayRankings(int nNumPlayers, int* nP1Pos, int* nP2Pos, int* nP3Pos, int
     
     // Display the rankings
     // Header
-    printf("+------+--------+\n");
-    printf("| RANK | PLAYER |\n");
-    printf("+------+--------+\n");
+    printf("%48s", "+------+--------+");
+    printf("\n");
+    printf("%48s", "| RANK | PLAYER |");
+    printf("\n");
+    printf("%48s", "+------+--------+");
+    printf("\n");
 
     switch (nNumPlayers) {
         case 2:
@@ -521,7 +540,8 @@ void displayRankings(int nNumPlayers, int* nP1Pos, int* nP2Pos, int* nP3Pos, int
             }
 
             for (int i = 0; i < nNumPlayers; i++) {
-                printf("|  %d   |  ", i + 1);
+                printf("%32s", "|");
+                printf("  %d   |  ", i + 1);
                 switch (arrIndices[i]) {
                     case 0: red(); break;
                     case 1: yellow(); break;
@@ -537,5 +557,61 @@ void displayRankings(int nNumPlayers, int* nP1Pos, int* nP2Pos, int* nP3Pos, int
     }
 
     // Footer
-    printf("+------+--------+\n");    
+    printf("%48s", "+------+--------+");
+    printf("\n");   
+}
+
+/**
+ * @brief This function displays the winner of the game.
+ * @param nCurrentPlayer is the current player.
+ * @param nCurrDoggo is the current number of doggos.
+ * @param nCurrLadder is the current number of ladders.
+ * @param nCurrSlide is the current number of slides.
+ * @param nCurrUTurn is the current number of U-turns.
+ * @param nCurrObjectNavFarthest is the farthest object navigated.
+ * @param nWinningMove is the winning move.
+ * @return void
+ */
+void displayWinnerSummary(int nCurrentPlayer, int* nCurrDoggos, int* nCurrLadders, int* nCurrSlides, int* nCurrUTurns, int* nCurrObjectNavFarthest, int* nWinningMove) {
+    printf("\n");
+    cyan();
+    printf("%55s", "[Winner Winner Chicken Dinner!]\n");
+    printf("\n");
+    reset();
+    printf("You reached the goal! YOU WIN!\n");
+    printf("Doggo appeared %d times.\n", *nCurrDoggos);
+    printf("You climbed ladders %d times.\n", *nCurrLadders);
+    printf("You rode slides %d times.\n", *nCurrSlides);
+    printf("You took U-turns %d times.\n", *nCurrUTurns);
+
+    switch (*nCurrObjectNavFarthest) {
+        case 1:
+            printf("The doggo took you to the farthest tile.\n");
+            break;
+        case 2:
+            printf("The ladder took you to the farthest tile.\n");
+            break;
+        case 3:
+            printf("The slide took you to the farthest tile.\n");
+            break;
+        case 4:
+            printf("The U-turn took you to the farthest tile.\n");
+            break;
+    }
+
+    switch (*nWinningMove) {
+        case 1:
+            printf("The winning move was when you followed the doggo.\n");
+            break;
+        case 2:
+            printf("The winning move was when you climbed the ladder.\n");
+            break;
+        case 3:
+            printf("The winning move was when you rode the slide.\n");
+            break;
+        case 4:
+            printf("The winning move was when you took the U-turn.\n");
+            break;
+    }
+    printf("\n\n");
 }

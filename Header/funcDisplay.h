@@ -3,6 +3,7 @@
  * @brief This file contains the function declarations for the functions that display the game's needed information.
  */
 
+void displayAcknowledgements();  // Acknowledgements
 void displayDivider();      // Game's divider
 void displayGameTitle();    // Game's title
 void displayEndGame();      // End of the game
@@ -17,9 +18,7 @@ void displayP4Position(int nP4Pos);  // Player 4's position
 void displayP5Position(int nP5Pos);  // Player 5's position
 void displayAllPlayersCurrentPosition(int nNumPlayers, int nP1Pos, int nP2Pos, int nP3Pos, int nP4Pos, int nP5Pos);  // Players' current position
 
-
 void displayInitializeStatus(int nNumPlayers, int nSequence, int* nP1Pos, int* nP2Pos, int* nP3Pos, int* nP4Pos, int* nP5Pos);  // Game's initialization status
-
 void displayCurrentPlayer(int nCurrentPlayer);  // Current player
-
 void displayRankings(int nNumPlayers, int* nP1Pos, int* nP2Pos, int* nP3Pos, int* nP4Pos, int* nP5Pos);  // Rankings of the players
+void displayWinnerSummary(int nCurrentPlayer, int* nCurrDoggos, int* nCurrLadders, int* nCurrSlides, int* nCurrUTurns, int* nCurrObjectNavFarthest, int* nWinningMove);  // Winner's summary

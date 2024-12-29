@@ -11,11 +11,16 @@
  * 
  * 
  * Programmed by: Amelia Joyce Abenoja      S12A
- * Last modified: 16 December 2024
+ * Last modified: 29 December 2024
  * Version: 2.0
  * 
  * Acknowledgements:
- * 
+ * 1. Can someone explain how to append an element to an array in C programming? (n.d.). Stack Overflow. https://stackoverflow.com/questions/26208788/can-someone-explain-how-to-append-an-element-to-an-array-in-c-programming
+ * 2. C library function to perform sort. (n.d.). Stack Overflow. https://stackoverflow.com/questions/1787996/c-library-function-to-perform-sort
+ * 3. Conditional (ternary) operator - JavaScript | MDN. (2024, December 19). MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
+ * 4. How to remove duplicate output in C program? (n.d.). Stack Overflow. https://stackoverflow.com/questions/27972225/how-to-remove-duplicate-output-in-c-program
+ * 5. Malagi, S. S. (2021, August 2). Introduction to C/C++ Documentation with Doxygen. https://www.linkedin.com/pulse/doxygen-santosh-s-malagi#:~:text=A%20function's%20documentation%20must%20include%20the%20following,*%20@see%20to%20refer%20to%20related%20functions.
+ * 6. Penguin, U. (2022, September 12). Adding color to your output from C. The Urban Penguin. https://www.theurbanpenguin.com/4184-2/
  */
 
 #include <stdio.h>
