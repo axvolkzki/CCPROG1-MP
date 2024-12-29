@@ -15,7 +15,7 @@ Unlike traditional Snakes and Ladders, DLSU introduces an exciting mix of elemen
    ```
 4. Compile the program.
    ```
-   gcc main.c -o main.exe
+   gcc Implementation/funcDisplay.c Implementation/funcGamePlay.c Implementation/funcHelper.c Implementation/funcInitialize.c mainDLSU.c -o main.exe
    ```
 5. Run the executable file.
    ```
@@ -26,7 +26,7 @@ Unlike traditional Snakes and Ladders, DLSU introduces an exciting mix of elemen
 1. Enter
 
 ## Last Updated
-December 14, 2024
+December 29, 2024
 
 ## Stable Version
 ![Version Badge](https://img.shields.io/badge/Version-2.0.0-blue)
