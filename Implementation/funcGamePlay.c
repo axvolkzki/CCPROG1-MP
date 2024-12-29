@@ -391,12 +391,66 @@ int getGameplay(int nCurrentPlayer, int* currPlayerPos, int* currPlayerDoggos, i
         *nWinningMove = nDiceObject;
     }
 
-    
     return nPosition;
 }
 
 /**
+ * @brief This function asks the user to display board and ranking every after round.
+ * @param nNumPlayers is the number of players.
+ * @param nP1Pos is the position of Player 1.
+ * @param nP2Pos is the position of Player 2.
+ * @param nP3Pos is the position of Player 3.
+ * @param nP4Pos is the position of Player 4.
+ * @param nP5Pos is the position of Player 5.
+ * @return void
+ */
+void endRound(int nNumPlayers, int* nP1Pos, int* nP2Pos, int* nP3Pos, int* nP4Pos, int* nP5Pos) {
+    // Variables - (Conditional (Ternary) Operator - JavaScript | MDN, 2024)
+    int nP1 = (nP1Pos) ? *nP1Pos : 0;
+    int nP2 = (nP2Pos) ? *nP2Pos : 0;
+    int nP3 = (nP3Pos) ? *nP3Pos : 0;
+    int nP4 = (nP4Pos) ? *nP4Pos : 0;
+    int nP5 = (nP5Pos) ? *nP5Pos : 0;
+    char cResponse = ' ';
+
+    printf("\n\nWould you like to display the board? [Y]es / [N]o\n");
+    printf("Answer\t: ");
+    scanf(" %c", &cResponse);
+
+    // Validate input for board display
+    while (cResponse != 'Y' && cResponse != 'y' && cResponse != 'N' && cResponse != 'n') {
+        printf("\nInvalid input! Try again.\nAnswer\t: ");
+        scanf(" %c", &cResponse);
+    }
+
+    if (cResponse == 'Y' || cResponse == 'y') {
+        cyan();
+        printf("\n%46s\n", "[B O A R D]");
+        reset();
+        displayBoard(nP1, nP2, nP3, nP4, nP5);
+    }
+
+    printf("\n\nWould you like to display the rankings? [Y]es / [N]o\n");
+    printf("Answer\t: ");
+    scanf(" %c", &cResponse);
+
+    // Validate input for rankings display
+    while (cResponse != 'Y' && cResponse != 'y' && cResponse != 'N' && cResponse != 'n') {
+        printf("\nInvalid input! Try again.\nAnswer\t: ");
+        scanf(" %c", &cResponse);
+    }
+
+    if (cResponse == 'Y' || cResponse == 'y') {
+        cyan();
+        printf("\n%48s\n","[R A N K I N G S]");
+        reset();
+        displayRankings(nNumPlayers, &nP1, &nP2, &nP3, &nP4, &nP5);
+    }
+}
+
+/**
  * @brief This function handles the gameplay for two players.
+ * @param nPosition is the position of the player changed by the current player.
  * @param nNumPlayers is the number of players.
  * @param nPlayerSequence is the sequence of players.
  * @param nP1Pos is the position of Player 1.
@@ -426,19 +480,15 @@ void twoPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, i
         switch (nCurrentPlayer) {
             case 1:
                 *nPosition = getGameplay(nCurrentPlayer, nP1Pos, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
-
                 if (*nPosition == 100) {
                     displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
                 }
-
                 break;
             case 2:
                 *nPosition = getGameplay(nCurrentPlayer, nP2Pos, &nP2Doggos, &nP2Ladders, &nP2Slides, &nP2UTurns, &nP2ObjectNavFarthest, &nWinningMove);
-                
                 if (*nPosition == 100) {
                     displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
                 }
-                
                 break;
         }
 
@@ -448,63 +498,7 @@ void twoPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, i
 
     nTurns = 0;
 
-    printf("\n\n");
-    printf("Would you like to display the board?");
-    blue();
-    printf("[Y]es \t");
-    red();
-    printf("[N]o \n");
-    reset();
-    printf("Answer\t: ");
-    scanf(" %c", &cResponse);
-
-    // Validate input for rankings display
-    while (cResponse != 'Y' && cResponse != 'y' && cResponse != 'N' && cResponse != 'n') {
-        red();
-        printf("\nSystem\t: \"Invalid input! Try again\"\n");
-        reset();
-        printf("Answer\t: ");
-        scanf(" %c", &cResponse);
-    }
-
-    // Display the board
-    if (cResponse == 'Y' || cResponse == 'y') {
-        printf("\n");
-        cyan();
-        printf("%45s", "[B O A R D]");
-        printf("\n\n");
-        reset();
-        displayBoard(*nP1Pos, *nP2Pos, 0, 0, 0);
-    }
-
-    printf("\n\n");
-    printf("Would you like to display the rankings?");
-    blue();
-    printf("[Y]es \t");
-    red();
-    printf("[N]o \n");
-    reset();
-    printf("Answer\t: ");
-    scanf(" %c", &cResponse);
-
-    // Validate input for rankings display
-    while (cResponse != 'Y' && cResponse != 'y' && cResponse != 'N' && cResponse != 'n') {
-        red();
-        printf("\nSystem\t: \"Invalid input! Try again\"\n");
-        reset();
-        printf("Answer\t: ");
-        scanf(" %c", &cResponse);
-    }
-
-    // Display the rankings
-    if (cResponse == 'Y' || cResponse == 'y') {
-        printf("\n");
-        cyan();
-        printf("%48s", "[R A N K I N G S]");
-        printf("\n\n");
-        reset();
-        displayRankings(nNumPlayers, nP1Pos, nP2Pos, 0, 0, 0);
-    }
+    endRound(nNumPlayers, nP1Pos, nP2Pos, NULL, NULL, NULL);
 
     // End of the round
     printf("\n\n");
@@ -516,9 +510,151 @@ void twoPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, i
     scanf(" %c", &cResponse);
 }
 
+/**
+ * @brief This function handles the gameplay for three players.
+ * @param nPosition is the position of the player changed by the current player.
+ * @param nNumPlayers is the number of players.
+ * @param nPlayerSequence is the sequence of players.
+ * @param nP1Pos is the position of Player 1.
+ * @param nP2Pos is the position of Player 2.
+ * @param nP3Pos is the position of Player 3.
+ * @return void
+ */
+void threePlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, int* nP1Pos, int* nP2Pos, int* nP3Pos) {
+    // Variables
+    int nP1Doggos = 0, nP2Doggos = 0, nP3Doggos = 0;
+    int nP1Ladders = 0, nP2Ladders = 0, nP3Ladders = 0;
+    int nP1Slides = 0, nP2Slides = 0, nP3Slides = 0;
+    int nP1UTurns = 0, nP2UTurns = 0, nP3UTurns = 0;
+    int nP1ObjectNavFarthest = 0, nP2ObjectNavFarthest = 0, nP3ObjectNavFarthest = 0;
+    int nWinningMove = 0;
+
+    int nTurns = 0;
+    int nCurrentPlayer = 0;
+    int nNewSequence = *nPlayerSequence;
+    char cResponse = ' ';
+
+    // Start the game
+    do {
+        nCurrentPlayer = getCurrentPlayer(nNewSequence);
+        printf("\n\n");
+        displayCurrentPlayer(nCurrentPlayer);
+
+        switch (nCurrentPlayer) {
+            case 1:
+                *nPosition = getGameplay(nCurrentPlayer, nP1Pos, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                if (*nPosition == 100) {
+                    displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                }
+                break;
+            case 2:
+                *nPosition = getGameplay(nCurrentPlayer, nP2Pos, &nP2Doggos, &nP2Ladders, &nP2Slides, &nP2UTurns, &nP2ObjectNavFarthest, &nWinningMove);
+                if (*nPosition == 100) {
+                    displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                }
+                break;
+            case 3:
+                *nPosition = getGameplay(nCurrentPlayer, nP3Pos, &nP3Doggos, &nP3Ladders, &nP3Slides, &nP3UTurns, &nP3ObjectNavFarthest, &nWinningMove);
+                if (*nPosition == 100) {
+                    displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                }
+                break;
+        }
+
+        nTurns++;
+        nNewSequence = getUpdatedPlayerSequence(nNewSequence);
+    } while (*nPosition != 100 && nTurns != nNumPlayers);
+
+    nTurns = 0;
+
+    endRound(nNumPlayers, nP1Pos, nP2Pos, nP3Pos, NULL, NULL);
+    printf("\n\n");
+    cyan();
+    printf("Press any key to continue...");
+    reset();
+    getchar(); // Consume newline from previous input
+    getchar(); // Wait for Enter key press
+}
+
+/**
+ * @brief This function handles the gameplay for four players.
+ * @param nPosition is the position of the player changed by the current player.
+ * @param nNumPlayers is the number of players.
+ * @param nPlayerSequence is the sequence of players.
+ * @param nP1Pos is the position of Player 1.
+ * @param nP2Pos is the position of Player 2.
+ * @param nP3Pos is the position of Player 3.
+ * @param nP4Pos is the position of Player 4.
+ * @return void
+ */
+void fourPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, int* nP1Pos, int* nP2Pos, int* nP3Pos, int* nP4Pos) {
+    // Variables
+    int nP1Doggos = 0, nP2Doggos = 0, nP3Doggos = 0, nP4Doggos = 0;
+    int nP1Ladders = 0, nP2Ladders = 0, nP3Ladders = 0, nP4Ladders = 0;
+    int nP1Slides = 0, nP2Slides = 0, nP3Slides = 0, nP4Slides = 0;
+    int nP1UTurns = 0, nP2UTurns = 0, nP3UTurns = 0, nP4UTurns = 0;
+    int nP1ObjectNavFarthest = 0, nP2ObjectNavFarthest = 0, nP3ObjectNavFarthest = 0, nP4ObjectNavFarthest = 0;
+    int nWinningMove = 0;
+
+    int nTurns = 0;
+    int nCurrentPlayer = 0;
+    int nNewSequence = *nPlayerSequence;
+    char cResponse = ' ';
+
+    // Start the game
+    do {
+        nCurrentPlayer = getCurrentPlayer(nNewSequence);
+        printf("\n\n");
+        displayCurrentPlayer(nCurrentPlayer);
+
+        switch (nCurrentPlayer) {
+            case 1:
+                *nPosition = getGameplay(nCurrentPlayer, nP1Pos, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                if (*nPosition == 100) {
+                    displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                }
+                break;
+            case 2:
+                *nPosition = getGameplay(nCurrentPlayer, nP2Pos, &nP2Doggos, &nP2Ladders, &nP2Slides, &nP2UTurns, &nP2ObjectNavFarthest, &nWinningMove);
+                if (*nPosition == 100) {
+                    displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                }
+                break;
+            case 3:
+                *nPosition = getGameplay(nCurrentPlayer, nP3Pos, &nP3Doggos, &nP3Ladders, &nP3Slides, &nP3UTurns, &nP3ObjectNavFarthest, &nWinningMove);
+                if (*nPosition == 100) {
+                    displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                }
+                break;
+            case 4:
+                *nPosition = getGameplay(nCurrentPlayer, nP4Pos, &nP4Doggos, &nP4Ladders, &nP4Slides, &nP4UTurns, &nP4ObjectNavFarthest, &nWinningMove);
+                if (*nPosition == 100) {
+                    displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
+                }
+                break;
+        }
+
+        nTurns++;
+        nNewSequence = getUpdatedPlayerSequence(nNewSequence);
+    } while (*nPosition != 100 && nTurns != nNumPlayers);
+
+    nTurns = 0;
+
+    endRound(nNumPlayers, nP1Pos, nP2Pos, nP3Pos, nP4Pos, NULL);
+
+    // End of the round
+    printf("\n\n");
+    cyan();
+    printf("[System] Press any key to continue...");
+    reset();
+    // getchar(); // Consume newline from previous input
+    // getchar(); // Wait for Enter key press
+    scanf(" %c", &cResponse);
+}
 
 /**
  * @brief This function handles the gameplay for five players.
+ * @param nPosition is the position of the player changed by the current player.
  * @param nNumPlayers is the number of players.
  * @param nPlayerSequence is the sequence of players.
  * @param nP1Pos is the position of Player 1.
@@ -526,6 +662,7 @@ void twoPlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, i
  * @param nP3Pos is the position of Player 3.
  * @param nP4Pos is the position of Player 4.
  * @param nP5Pos is the position of Player 5.
+ * @return void
  */
 void fivePlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, int* nP1Pos, int* nP2Pos, int* nP3Pos, int* nP4Pos, int* nP5Pos) {
     // Variables
@@ -550,35 +687,27 @@ void fivePlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, 
         switch (nCurrentPlayer) {
             case 1:
                 *nPosition = getGameplay(nCurrentPlayer, nP1Pos, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
-
                 if (*nPosition == 100) {
                     displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
                 }
-
                 break;
             case 2:
                 *nPosition = getGameplay(nCurrentPlayer, nP2Pos, &nP2Doggos, &nP2Ladders, &nP2Slides, &nP2UTurns, &nP2ObjectNavFarthest, &nWinningMove);
-                
                 if (*nPosition == 100) {
                     displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
                 }
-
                 break;
             case 3:
                 *nPosition = getGameplay(nCurrentPlayer, nP3Pos, &nP3Doggos, &nP3Ladders, &nP3Slides, &nP3UTurns, &nP3ObjectNavFarthest, &nWinningMove);
-                
                 if (*nPosition == 100) {
                     displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
                 }
-
                 break;
             case 4:
                 *nPosition = getGameplay(nCurrentPlayer, nP4Pos, &nP4Doggos, &nP4Ladders, &nP4Slides, &nP4UTurns, &nP4ObjectNavFarthest, &nWinningMove);
-                
                 if (*nPosition == 100) {
                     displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
                 }
-
                 break;
             case 5:
                 *nPosition = getGameplay(nCurrentPlayer, nP5Pos, &nP5Doggos, &nP5Ladders, &nP5Slides, &nP5UTurns, &nP5ObjectNavFarthest, &nWinningMove);
@@ -586,7 +715,6 @@ void fivePlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, 
                 if (*nPosition == 100) {
                     displayWinnerSummary(nCurrentPlayer, &nP1Doggos, &nP1Ladders, &nP1Slides, &nP1UTurns, &nP1ObjectNavFarthest, &nWinningMove);
                 }
-
                 break;
         }
 
@@ -596,63 +724,7 @@ void fivePlayersGamePlay(int* nPosition, int nNumPlayers, int* nPlayerSequence, 
 
     nTurns = 0;
 
-    printf("\n\n");
-    printf("Would you like to display the board?");
-    blue();
-    printf("[Y]es \t");
-    red();
-    printf("[N]o \n");
-    reset();
-    printf("Answer\t: ");
-    scanf(" %c", &cResponse);
-
-    // Validate input for rankings display
-    while (cResponse != 'Y' && cResponse != 'y' && cResponse != 'N' && cResponse != 'n') {
-        red();
-        printf("\nSystem\t: \"Invalid input! Try again\"\n");
-        reset();
-        printf("Answer\t: ");
-        scanf(" %c", &cResponse);
-    }
-
-    // Display the board
-    if (cResponse == 'Y' || cResponse == 'y') {
-        printf("\n");
-        cyan();
-        printf("%45s", "[B O A R D]");
-        printf("\n\n");
-        reset();
-        displayBoard(*nP1Pos, *nP2Pos, *nP3Pos, *nP4Pos, *nP5Pos);
-    }
-
-    printf("\n\n");
-    printf("Would you like to display the rankings?");
-    blue();
-    printf("[Y]es \t");
-    red();
-    printf("[N]o \n");
-    reset();
-    printf("Answer\t: ");
-    scanf(" %c", &cResponse);
-
-    // Validate input for rankings display
-    while (cResponse != 'Y' && cResponse != 'y' && cResponse != 'N' && cResponse != 'n') {
-        red();
-        printf("\nSystem\t: \"Invalid input! Try again\"\n");
-        reset();
-        printf("Answer\t: ");
-        scanf(" %c", &cResponse);
-    }
-
-    // Display the rankings
-    if (cResponse == 'Y' || cResponse == 'y') {
-        printf("\n");
-        cyan();
-        printf("%48s", "[R A N K I N G S]");
-        printf("\n\n");
-        reset();
-        displayRankings(nNumPlayers, nP1Pos, nP2Pos, nP3Pos, nP4Pos, nP5Pos);
-    }
+    endRound(nNumPlayers, nP1Pos, nP2Pos, nP3Pos, nP4Pos, nP5Pos);
 
     printf("\n\n");
     cyan();

@@ -3,6 +3,7 @@
  * @brief This file contains the function declarations for the functions that display the game's needed information.
  */
 
+void displayAcknowledgements();  // Acknowledgements
 void displayDivider();      // Game's divider
 void displayGameTitle();    // Game's title
 void displayEndGame();      // End of the game
