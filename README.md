@@ -22,19 +22,10 @@ Unlike traditional Snakes and Ladders, DLSU introduces an exciting mix of elemen
    ./main.exe
    ```
 
-## Simple Program Flow
-1. Enter
-
 ## Last Updated
 December 29, 2024
-
-## Stable Version
-![Version Badge](https://img.shields.io/badge/Version-2.0.0-blue)
 
 ## Technologies
 [![C](https://img.shields.io/badge/C-00599C?logo=c&logoColor=white)](#)
 [![Visual Studio Code](https://custom-icon-badges.demolab.com/badge/Visual%20Studio%20Code-0078d7.svg?logo=vsc&logoColor=white)](#)
 [![Windows](https://custom-icon-badges.demolab.com/badge/Windows-0078D6?logo=windows11&logoColor=white)](#)
-
-## Developer
-Amelia Joyce Abenoja [![LinkedIn](https://img.shields.io/badge/Linkedin-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/amelia-joyce-abenoja/) [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/axvolkzki)
